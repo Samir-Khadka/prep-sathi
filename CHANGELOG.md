@@ -1,3 +1,10 @@
+# Phase 4 — launch readiness (v0.4.0), 16 Nov 2026
+- Landing page: value proposition, how-it-works steps, free/no-paywall card, honest band labelling, and a privacy note page (recordings stay on-device, account/recording deletion). SEO basics: meta description, Open Graph tags, robots.txt, sitemap (root only — hash URLs are not crawlable; domain is a placeholder until a real deploy URL exists).
+- In-app feedback loop: POST /api/feedback (authenticated) plus an admin list/resolve view gated by ADMIN_EMAILS (read from the environment at request time); feedback form page at /#/feedback.
+- First weekly content batch (all original): Listening L4 (40 questions) and Academic Reading RA4 (40 questions), vocabulary deck 200 → 250 words. Mock rotation extended to a fourth sitting (L4+RA4, L4+RG1).
+- LAUNCH.md: the exact 1 Dec flip-switch steps (Render blueprint, Neon DATABASE_URL, env vars, end-to-end checks, monitoring without 5-minute pings). Deploy assessment 16 Nov: no live deploy today — Render free web services still 503-suspended until 1 Dec; no accounts created, no signups attempted.
+- Deferred: partner Speaking practice and the store wrapper (DECISIONS.md items 25–26).
+
 # Phase 3 — full mocks and feedback (v0.3.0), 16 Nov 2026
 - Full mock sittings in test order (Listening → Reading → Writing in
   one timed session, no breaks, no going back to a closed section;

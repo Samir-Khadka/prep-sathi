@@ -36,7 +36,7 @@ def _find_keys(obj: object, wanted: set[str]) -> list[str]:
 
 def test_listening_counts() -> None:
     store = ContentStore()
-    assert len(store.listening_tests) == 3
+    assert len(store.listening_tests) == 4
     for test in store.listening_tests:
         questions = [q for part in test["parts"] for q in part["questions"]]
         assert len(questions) == 40
@@ -47,9 +47,9 @@ def test_listening_counts() -> None:
 
 def test_reading_counts() -> None:
     store = ContentStore()
-    assert len(store.reading_tests) == 4
+    assert len(store.reading_tests) == 5
     tracks = [t["track"] for t in store.reading_tests]
-    assert tracks.count("academic") == 3
+    assert tracks.count("academic") == 4
     assert tracks.count("general") == 1
     for test in store.reading_tests:
         questions = [q for p in test["passages"] for q in p["questions"]]
@@ -79,9 +79,9 @@ def test_speaking_counts() -> None:
 
 def test_vocabulary_counts() -> None:
     store = ContentStore()
-    assert len(store.vocabulary_deck) == 200
+    assert len(store.vocabulary_deck) == 250
     words = [w["word"].strip().lower() for w in store.vocabulary_deck]
-    assert len(set(words)) == 200
+    assert len(set(words)) == 250
 
 
 def test_public_listening_hides_answers() -> None:

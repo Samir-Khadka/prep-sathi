@@ -1586,6 +1586,523 @@
           ]
         }
       ]
+    },
+    {
+      "id": "L4",
+      "title": "Listening Test 4",
+      "parts": [
+        {
+          "part": 1,
+          "title": "Booking a room for a birthday party",
+          "setting": "A woman phones a community centre to book a room for her mother's birthday party.",
+          "transcript": "NARRATOR: You will hear a woman phoning a community centre to book a room for her mother's birthday party.\nRECEPTIONIST: Good afternoon, Hilltop Community Centre.\nCALLER: Good afternoon. My name is Sofia Mendes. I would like to book a room for a birthday party.\nRECEPTIONIST: Of course, Sofia. Which date were you thinking of?\nCALLER: Saturday the fourteenth of December. Is the main hall free that day?\nRECEPTIONIST: Let me check. Yes, the main hall is free on the fourteenth, in the afternoon and in the evening.\nCALLER: The party would be in the evening, from six o'clock until ten o'clock.\nRECEPTIONIST: That is fine. The hall is available until half past ten.\nCALLER: How many people can the hall hold?\nRECEPTIONIST: It can hold up to eighty people comfortably. How many guests are you expecting?\nCALLER: About fifty, including children.\nCALLER: How much does it cost to hire the hall for the evening?\nRECEPTIONIST: The hire charge is forty-five pounds for the evening. There is also a deposit of thirty pounds, which we return to you after the event if nothing is damaged.\nCALLER: Does the hall have a kitchen I can use?\nRECEPTIONIST: Yes, there is a small kitchen next to the hall.\nCALLER: Good. Can I bring my own food and drinks?\nRECEPTIONIST: Yes, you can bring your own food, but alcohol is not allowed in the building.\nCALLER: That is fine — we will bring soft drinks and juice.\nRECEPTIONIST: There are twelve large tables and sixty chairs in the hall already, and we can bring in more if you need them.\nCALLER: Twelve tables should be enough. Is there a sound system for music?\nRECEPTIONIST: Yes, there is a speaker system, and you can connect your phone to it with a cable.\nCALLER: Some of the guests are elderly. Is there step-free access?\nRECEPTIONIST: Yes, there is a ramp at the main entrance and a lift to the first floor.\nCALLER: How do I confirm the booking?\nRECEPTIONIST: I can take a booking now. I will need your phone number and email address, and you can pay the deposit online within three days.\nCALLER: My phone number is 07700 900 214, and my email is sofia.mendes@examplemail.com.\nRECEPTIONIST: Thank you. I have booked the main hall for the fourteenth, from six until ten. I will send you the payment link today.\nCALLER: Thank you very much. One last question — where can guests park?\nRECEPTIONIST: There is a free car park behind the building, with space for about forty cars.\nCALLER: Excellent. Thank you.\nRECEPTIONIST: You are welcome, Sofia. We look forward to seeing you on the fourteenth.",
+          "audio_url": null,
+          "audio_note": "Audio is pending — Samir will record this with a real voice. Read the transcript once, as you would hear it once.",
+          "questions": [
+            {
+              "no": 1,
+              "type": "short",
+              "prompt": "The party is on Saturday the ___ of December.",
+              "answers": [
+                "fourteenth",
+                "14th",
+                "14"
+              ],
+              "explanation": "Sofia asks about Saturday the fourteenth of December.",
+              "evidence": "CALLER: Saturday the fourteenth of December. Is the main hall free that day?"
+            },
+            {
+              "no": 2,
+              "type": "mcq",
+              "prompt": "What time will the party finish?",
+              "options": [
+                "Ten o'clock",
+                "Half past ten",
+                "Eleven o'clock"
+              ],
+              "answer": 0,
+              "explanation": "The party runs from six o'clock until ten o'clock; half past ten is only the latest the hall is available.",
+              "evidence": "CALLER: The party would be in the evening, from six o'clock until ten o'clock."
+            },
+            {
+              "no": 3,
+              "type": "short",
+              "prompt": "The hall can hold up to ___ people.",
+              "answers": [
+                "eighty",
+                "80"
+              ],
+              "explanation": "The receptionist says the hall can hold up to eighty people comfortably.",
+              "evidence": "RECEPTIONIST: It can hold up to eighty people comfortably. How many guests are you expecting?"
+            },
+            {
+              "no": 4,
+              "type": "mcq",
+              "prompt": "How much is the deposit?",
+              "options": [
+                "Thirty pounds",
+                "Forty-five pounds",
+                "Seventy-five pounds"
+              ],
+              "answer": 0,
+              "explanation": "The hire charge is forty-five pounds, but the deposit is thirty pounds.",
+              "evidence": "RECEPTIONIST: The hire charge is forty-five pounds for the evening. There is also a deposit of thirty pounds, which we return to you after the event if nothing is damaged."
+            },
+            {
+              "no": 5,
+              "type": "short",
+              "prompt": "The deposit is returned if nothing is ___.",
+              "answers": [
+                "damaged"
+              ],
+              "explanation": "The deposit is returned after the event if nothing is damaged.",
+              "evidence": "RECEPTIONIST: The hire charge is forty-five pounds for the evening. There is also a deposit of thirty pounds, which we return to you after the event if nothing is damaged."
+            },
+            {
+              "no": 6,
+              "type": "mcq",
+              "prompt": "What is NOT allowed in the building?",
+              "options": [
+                "Soft drinks",
+                "Alcohol",
+                "Home-made food"
+              ],
+              "answer": 1,
+              "explanation": "Sofia may bring her own food, but alcohol is not allowed in the building.",
+              "evidence": "RECEPTIONIST: Yes, you can bring your own food, but alcohol is not allowed in the building."
+            },
+            {
+              "no": 7,
+              "type": "short",
+              "prompt": "There are ___ large tables in the hall.",
+              "answers": [
+                "twelve",
+                "12"
+              ],
+              "explanation": "The receptionist says there are twelve large tables and sixty chairs in the hall already.",
+              "evidence": "RECEPTIONIST: There are twelve large tables and sixty chairs in the hall already, and we can bring in more if you need them."
+            },
+            {
+              "no": 8,
+              "type": "mcq",
+              "prompt": "How can Sofia connect her phone to the speaker system?",
+              "options": [
+                "With a cable",
+                "By Bluetooth",
+                "With a remote control"
+              ],
+              "answer": 0,
+              "explanation": "She can connect her phone to the speaker system with a cable, and cables are available at reception.",
+              "evidence": "RECEPTIONIST: Yes, there is a speaker system, and you can connect your phone to it with a cable."
+            },
+            {
+              "no": 9,
+              "type": "short",
+              "prompt": "Guests can park in the free car park ___ the building.",
+              "answers": [
+                "behind"
+              ],
+              "explanation": "There is a free car park behind the building, with space for about forty cars.",
+              "evidence": "RECEPTIONIST: There is a free car park behind the building, with space for about forty cars."
+            },
+            {
+              "no": 10,
+              "type": "short",
+              "prompt": "Sofia must pay the deposit within ___ days.",
+              "answers": [
+                "three",
+                "3"
+              ],
+              "explanation": "The deposit must be paid online within three days.",
+              "evidence": "RECEPTIONIST: I can take a booking now. I will need your phone number and email address, and you can pay the deposit online within three days."
+            }
+          ]
+        },
+        {
+          "part": 2,
+          "title": "A tour of the Old Station Railway Museum",
+          "setting": "A guide welcomes visitors to a small railway museum and describes the tour.",
+          "transcript": "NARRATOR: You will hear a guide welcoming visitors to a small railway museum.\nGUIDE: Good morning, everyone, and welcome to the Old Station Railway Museum. My name is Daniel, and I will be your guide this morning. Before we begin, let me tell you a little about this building. The station opened in eighteen eighty-four, and trains stopped here for almost one hundred years. The last passenger train left in nineteen eighty-one, and the building stood empty for ten years before a group of local volunteers saved it and turned it into a museum.\nOur tour today will last about one hour, and we will visit four rooms. We start here, in the ticket hall, where passengers once bought their tickets. You can still see the original wooden ticket counter, and the old timetable boards on the wall. The earliest timetable we have is from eighteen ninety-two, and it shows just six trains a day.\nNext, we will go into the waiting room, which has been restored to look exactly as it did in nineteen twenty. The benches, the stove, and even the posters on the wall are all original. In those days, passengers waited here for hours, because trains were often delayed in winter.\nAfter that, we visit the signal box, where you can try pulling the levers that once controlled the signals and the points. Please be careful with the levers — they are heavy, and some of them are over a hundred years old.\nFinally, we will go outside to the platform, where our oldest exhibit is waiting: a steam locomotive called the Green Dragon, built in nineteen oh three. It carried coal from the mines to the port for forty years. You are welcome to climb into the driver's cab and have your photograph taken, but please do not touch the controls.\nThe museum is open from Tuesday to Sunday, from ten in the morning until four in the afternoon. Admission is free, but we do ask visitors to leave a small donation if they can. There is a small cafe in the old parcels office, and it serves tea, coffee, and homemade cakes. The shop sells postcards, books, and model trains.\nBefore we start, please remember that photography is allowed everywhere in the museum, but please do not use a flash in the waiting room, because the light can damage the old posters. If you have any questions during the tour, please just ask. Let us begin in the ticket hall.",
+          "audio_url": null,
+          "audio_note": "Audio is pending — Samir will record this with a real voice. Read the transcript once, as you would hear it once.",
+          "questions": [
+            {
+              "no": 11,
+              "type": "mcq",
+              "prompt": "When did the station open?",
+              "options": [
+                "1881",
+                "1884",
+                "1892"
+              ],
+              "answer": 1,
+              "explanation": "The station opened in eighteen eighty-four; 1892 is the date of the earliest timetable.",
+              "evidence": "GUIDE: Good morning, everyone, and welcome to the Old Station Railway Museum. My name is Daniel, and I will be your guide this morning. Before we begin, let me tell you a little about this building. The station opened in eighteen eighty-four, and trains stopped here for almost one hundred years."
+            },
+            {
+              "no": 12,
+              "type": "short",
+              "prompt": "The last passenger train left in ___.",
+              "answers": [
+                "nineteen eighty-one",
+                "1981"
+              ],
+              "explanation": "The last passenger train left in nineteen eighty-one.",
+              "evidence": "The last passenger train left in nineteen eighty-one, and the building stood empty for ten years before a group of local volunteers saved it and turned it into a museum."
+            },
+            {
+              "no": 13,
+              "type": "mcq",
+              "prompt": "How long will the tour last?",
+              "options": [
+                "About half an hour",
+                "About one hour",
+                "About two hours"
+              ],
+              "answer": 1,
+              "explanation": "The tour will last about one hour and visit four rooms.",
+              "evidence": "Our tour today will last about one hour, and we will visit four rooms."
+            },
+            {
+              "no": 14,
+              "type": "short",
+              "prompt": "The earliest timetable is from ___.",
+              "answers": [
+                "eighteen ninety-two",
+                "1892"
+              ],
+              "explanation": "The earliest timetable is from eighteen ninety-two and shows just six trains a day.",
+              "evidence": "The earliest timetable we have is from eighteen ninety-two, and it shows just six trains a day."
+            },
+            {
+              "no": 15,
+              "type": "mcq",
+              "prompt": "What can visitors see in the waiting room?",
+              "options": [
+                "Original benches and posters",
+                "A model railway",
+                "The ticket machines"
+              ],
+              "answer": 0,
+              "explanation": "The waiting room was restored to look as it did in 1920, with original benches, stove and posters.",
+              "evidence": "Next, we will go into the waiting room, which has been restored to look exactly as it did in nineteen twenty. The benches, the stove, and even the posters on the wall are all original."
+            },
+            {
+              "no": 16,
+              "type": "short",
+              "prompt": "Visitors can try pulling the ___ in the signal box.",
+              "answers": [
+                "levers"
+              ],
+              "explanation": "In the signal box visitors can try pulling the levers that once controlled the signals and the points.",
+              "evidence": "After that, we visit the signal box, where you can try pulling the levers that once controlled the signals and the points."
+            },
+            {
+              "no": 17,
+              "type": "mcq",
+              "prompt": "What is the name of the steam locomotive?",
+              "options": [
+                "The Green Dragon",
+                "The Red Arrow",
+                "The Silver Star"
+              ],
+              "answer": 0,
+              "explanation": "The oldest exhibit is a steam locomotive called the Green Dragon.",
+              "evidence": "Finally, we will go outside to the platform, where our oldest exhibit is waiting: a steam locomotive called the Green Dragon, built in nineteen oh three."
+            },
+            {
+              "no": 18,
+              "type": "short",
+              "prompt": "The locomotive was built in ___.",
+              "answers": [
+                "nineteen oh three",
+                "1903"
+              ],
+              "explanation": "The Green Dragon was built in nineteen oh three.",
+              "evidence": "a steam locomotive called the Green Dragon, built in nineteen oh three."
+            },
+            {
+              "no": 19,
+              "type": "mcq",
+              "prompt": "On which day is the museum closed?",
+              "options": [
+                "On Mondays",
+                "On Tuesdays",
+                "On Sundays"
+              ],
+              "answer": 0,
+              "explanation": "The museum is open from Tuesday to Sunday, so it is closed on Mondays.",
+              "evidence": "The museum is open from Tuesday to Sunday, from ten in the morning until four in the afternoon."
+            },
+            {
+              "no": 20,
+              "type": "short",
+              "prompt": "Photography is allowed, but flash is not allowed in the ___.",
+              "answers": [
+                "waiting room"
+              ],
+              "explanation": "Flash is not allowed in the waiting room because the light can damage the old posters.",
+              "evidence": "please remember that photography is allowed everywhere in the museum, but please do not use a flash in the waiting room, because the light can damage the old posters."
+            }
+          ]
+        },
+        {
+          "part": 3,
+          "title": "Planning a class debate on social media",
+          "setting": "Two students plan their arguments for a class debate about social media.",
+          "transcript": "NARRATOR: You will hear two students planning a class debate about social media.\nJAMES: Hi Lena. Have you started preparing for the debate on Friday?\nLENA: A little. Our team has to argue that social media does more harm than good for teenagers. I am not sure where to begin.\nJAMES: Let us start with the strongest point: time. The average teenager spends more than three hours a day on social media, and that time comes straight out of homework, sleep, and sport.\nLENA: That is a good point, but the other team will say that teenagers also learn a lot online. How do we answer that?\nJAMES: We can say that learning is different from scrolling. Most of those three hours are spent watching short videos.\nLENA: True. What about mental health? I read a survey that found teenagers who spend more than two hours a day on social media are more likely to report feeling anxious.\nJAMES: Yes, that survey was done last year with five thousand teenagers. We can quote it — but we need to be careful, because the other team may say the survey only shows a link, not a cause.\nLENA: We can accept that, and still argue that the link is strong enough to worry parents and teachers.\nJAMES: Good. Another point is sleep. Many teenagers check their phones late at night, and the light from the screen makes it harder to fall asleep.\nLENA: And tired teenagers do worse at school the next day.\nJAMES: What about the other side? The opposing team will say social media helps teenagers keep in touch with friends and family.\nLENA: That is true, especially for teenagers who live far from their friends. But we can argue that real conversations are better than messages, and that many teenagers already meet their friends at school every day.\nJAMES: We should also mention online bullying. It is harder to escape than bullying in the playground, because it can follow you home.\nLENA: That is our strongest emotional point. We should keep it for the end, so the audience remembers it.\nJAMES: Agreed. So our order is: time, mental health, sleep, and then bullying at the end. Who will speak first?\nLENA: You should open, because you are good at introductions. I will take the mental health and sleep points, and you can finish with bullying.\nJAMES: Fine. Let us meet on Wednesday evening to practise. We need to keep each speech under four minutes.\nLENA: Wednesday at seven in the library. I will bring the survey results, and you bring the notes on sleep.\nJAMES: Perfect. See you then.",
+          "audio_url": null,
+          "audio_note": "Audio is pending — Samir will record this with a real voice. Read the transcript once, as you would hear it once.",
+          "questions": [
+            {
+              "no": 21,
+              "type": "mcq",
+              "prompt": "What must James and Lena's team argue in the debate?",
+              "options": [
+                "Social media does more harm than good for teenagers",
+                "Teenagers should not use phones at school",
+                "Social media helps teenagers learn"
+              ],
+              "answer": 0,
+              "explanation": "Their team has to argue that social media does more harm than good for teenagers.",
+              "evidence": "LENA: A little. Our team has to argue that social media does more harm than good for teenagers. I am not sure where to begin."
+            },
+            {
+              "no": 22,
+              "type": "short",
+              "prompt": "The average teenager spends more than ___ hours a day on social media.",
+              "answers": [
+                "three",
+                "3"
+              ],
+              "explanation": "The average teenager spends more than three hours a day on social media.",
+              "evidence": "JAMES: Let us start with the strongest point: time. The average teenager spends more than three hours a day on social media, and that time comes straight out of homework, sleep, and sport."
+            },
+            {
+              "no": 23,
+              "type": "mcq",
+              "prompt": "How many teenagers took part in the survey Lena mentions?",
+              "options": [
+                "Five hundred",
+                "Two thousand",
+                "Five thousand"
+              ],
+              "answer": 2,
+              "explanation": "The survey was done last year with five thousand teenagers.",
+              "evidence": "JAMES: Yes, that survey was done last year with five thousand teenagers."
+            },
+            {
+              "no": 24,
+              "type": "short",
+              "prompt": "Teenagers who spend more than two hours a day on social media are more likely to feel ___.",
+              "answers": [
+                "anxious"
+              ],
+              "explanation": "The survey found such teenagers are more likely to report feeling anxious.",
+              "evidence": "LENA: True. What about mental health? I read a survey that found teenagers who spend more than two hours a day on social media are more likely to report feeling anxious."
+            },
+            {
+              "no": 25,
+              "type": "mcq",
+              "prompt": "What does the light from the screen do at night?",
+              "options": [
+                "Makes it harder to fall asleep",
+                "Helps teenagers relax",
+                "Improves their eyesight"
+              ],
+              "answer": 0,
+              "explanation": "The light from the screen makes it harder to fall asleep.",
+              "evidence": "JAMES: Good. Another point is sleep. Many teenagers check their phones late at night, and the light from the screen makes it harder to fall asleep."
+            },
+            {
+              "no": 26,
+              "type": "short",
+              "prompt": "The team's last point will be about online ___.",
+              "answers": [
+                "bullying"
+              ],
+              "explanation": "Online bullying is their strongest emotional point, kept for the end.",
+              "evidence": "LENA: That is our strongest emotional point. We should keep it for the end, so the audience remembers it."
+            },
+            {
+              "no": 27,
+              "type": "mcq",
+              "prompt": "Who will open the debate for the team?",
+              "options": [
+                "Lena",
+                "James",
+                "Both together"
+              ],
+              "answer": 1,
+              "explanation": "James will open because he is good at introductions.",
+              "evidence": "LENA: You should open, because you are good at introductions."
+            },
+            {
+              "no": 28,
+              "type": "short",
+              "prompt": "Each speech must be under ___ minutes.",
+              "answers": [
+                "four",
+                "4"
+              ],
+              "explanation": "They need to keep each speech under four minutes.",
+              "evidence": "JAMES: Fine. Let us meet on Wednesday evening to practise. We need to keep each speech under four minutes."
+            },
+            {
+              "no": 29,
+              "type": "mcq",
+              "prompt": "When will they meet to practise?",
+              "options": [
+                "Tuesday evening",
+                "Wednesday evening",
+                "Thursday evening"
+              ],
+              "answer": 1,
+              "explanation": "They will meet again on Wednesday evening to practise.",
+              "evidence": "JAMES: Fine. Let us meet on Wednesday evening to practise."
+            },
+            {
+              "no": 30,
+              "type": "short",
+              "prompt": "Lena will bring the ___ to the practice meeting.",
+              "answers": [
+                "survey results"
+              ],
+              "explanation": "Lena will bring the survey results, and James will bring the notes on sleep.",
+              "evidence": "LENA: Wednesday at seven in the library. I will bring the survey results, and you bring the notes on sleep."
+            }
+          ]
+        },
+        {
+          "part": 4,
+          "title": "Urban trees and city heat",
+          "setting": "A lecturer explains how trees help cities cope with rising temperatures.",
+          "transcript": "NARRATOR: You will hear a lecture about how trees help cities cope with rising temperatures.\nLECTURER: Good morning. Today I want to talk about a simple and surprisingly powerful tool for cooling our cities: the urban tree. As cities grow hotter, researchers are paying more attention to the shade and cooling that trees provide.\nFirst, let us look at the problem. Cities are usually several degrees warmer than the countryside around them. This is called the urban heat island effect. Roads, roofs, and pavements absorb heat during the day and release it slowly at night, so the city never fully cools down. During a heatwave, this difference can reach seven degrees, which puts elderly people and young children at serious risk.\nTrees cool a city in two ways. The first is shade. A large tree can shade an area of more than one hundred square metres, and the ground beneath it can be ten degrees cooler than the same ground in full sun. The second is evaporation. A mature tree releases hundreds of litres of water into the air each day through its leaves, and as this water evaporates, it takes heat with it. Together, shade and evaporation can lower the temperature of a street by two to five degrees.\nTrees also clean the air by trapping dust and absorbing some pollutants. They reduce noise from traffic, and they give people somewhere pleasant to walk and sit. Studies have found that patients in rooms with a view of trees recover faster than patients whose windows face a brick wall.\nHowever, planting trees in cities is not easy. The soil under a pavement is often too shallow and too dry, and the roots have little room to grow. Many young trees die within five years of planting, because nobody waters them during the first dry summer. To succeed, a city needs to choose the right species — trees that can survive drought, pollution, and salty roads in winter — and it needs to water them for at least the first three years.\nSome cities are now taking this seriously. In Singapore, planners aim to plant one million more trees by twenty thirty. In Paris, the city is planting trees along every street it rebuilds. These programmes are expensive, but researchers argue that planting a tree costs far less than treating heat-related illness, or cooling a building with air conditioning.\nTo conclude, urban trees are not decoration. They are infrastructure — as important to a healthy city as clean water or reliable transport. The question is not whether we can afford to plant them, but whether we can afford not to.",
+          "audio_url": null,
+          "audio_note": "Audio is pending — Samir will record this with a real voice. Read the transcript once, as you would hear it once.",
+          "questions": [
+            {
+              "no": 31,
+              "type": "mcq",
+              "prompt": "What is the urban heat island effect?",
+              "options": [
+                "Cities are several degrees warmer than the countryside",
+                "The countryside is warmer than cities",
+                "Cities cool down quickly at night"
+              ],
+              "answer": 0,
+              "explanation": "Cities are usually several degrees warmer than the countryside around them.",
+              "evidence": "First, let us look at the problem. Cities are usually several degrees warmer than the countryside around them. This is called the urban heat island effect."
+            },
+            {
+              "no": 32,
+              "type": "short",
+              "prompt": "During a heatwave, the temperature difference can reach ___ degrees.",
+              "answers": [
+                "seven",
+                "7"
+              ],
+              "explanation": "During a heatwave the difference between city and countryside can reach seven degrees.",
+              "evidence": "During a heatwave, this difference can reach seven degrees, which puts elderly people and young children at serious risk."
+            },
+            {
+              "no": 33,
+              "type": "mcq",
+              "prompt": "How much area can a large tree shade?",
+              "options": [
+                "More than ten square metres",
+                "More than fifty square metres",
+                "More than one hundred square metres"
+              ],
+              "answer": 2,
+              "explanation": "A large tree can shade an area of more than one hundred square metres.",
+              "evidence": "A large tree can shade an area of more than one hundred square metres, and the ground beneath it can be ten degrees cooler than the same ground in full sun."
+            },
+            {
+              "no": 34,
+              "type": "short",
+              "prompt": "The ground under a tree can be ___ degrees cooler than ground in full sun.",
+              "answers": [
+                "ten",
+                "10"
+              ],
+              "explanation": "The ground beneath a large tree can be ten degrees cooler than the same ground in full sun.",
+              "evidence": "A large tree can shade an area of more than one hundred square metres, and the ground beneath it can be ten degrees cooler than the same ground in full sun."
+            },
+            {
+              "no": 35,
+              "type": "mcq",
+              "prompt": "How do trees cool the air through evaporation?",
+              "options": [
+                "Their leaves release water into the air",
+                "Their roots absorb heat from the soil",
+                "Their bark reflects sunlight"
+              ],
+              "answer": 0,
+              "explanation": "A mature tree releases hundreds of litres of water into the air each day through its leaves, and the evaporating water takes heat with it.",
+              "evidence": "A mature tree releases hundreds of litres of water into the air each day through its leaves, and as this water evaporates, it takes heat with it."
+            },
+            {
+              "no": 36,
+              "type": "short",
+              "prompt": "Shade and evaporation together can lower a street's temperature by two to ___ degrees.",
+              "answers": [
+                "five",
+                "5"
+              ],
+              "explanation": "Together, shade and evaporation can lower the temperature of a street by two to five degrees.",
+              "evidence": "Together, shade and evaporation can lower the temperature of a street by two to five degrees."
+            },
+            {
+              "no": 37,
+              "type": "mcq",
+              "prompt": "What did studies find about hospital patients?",
+              "options": [
+                "Patients with a view of trees recover faster",
+                "Patients prefer rooms facing brick walls",
+                "Patients recover at the same speed in all rooms"
+              ],
+              "answer": 0,
+              "explanation": "Patients in hospital rooms with a view of trees recover faster than patients whose windows face a brick wall.",
+              "evidence": "Studies have found that patients in rooms with a view of trees recover faster than patients whose windows face a brick wall."
+            },
+            {
+              "no": 38,
+              "type": "short",
+              "prompt": "Many young trees die within ___ years of planting.",
+              "answers": [
+                "five",
+                "5"
+              ],
+              "explanation": "Many young trees die within five years of planting, because nobody waters them during the first dry summer.",
+              "evidence": "Many young trees die within five years of planting, because nobody waters them during the first dry summer."
+            },
+            {
+              "no": 39,
+              "type": "mcq",
+              "prompt": "How many more trees does Singapore aim to plant by 2030?",
+              "options": [
+                "One hundred thousand",
+                "One million",
+                "Ten million"
+              ],
+              "answer": 1,
+              "explanation": "In Singapore, planners aim to plant one million more trees by twenty thirty.",
+              "evidence": "In Singapore, planners aim to plant one million more trees by twenty thirty."
+            },
+            {
+              "no": 40,
+              "type": "short",
+              "prompt": "The lecturer says urban trees are not decoration but ___.",
+              "answers": [
+                "infrastructure"
+              ],
+              "explanation": "Urban trees are infrastructure, as important to a healthy city as clean water or reliable transport.",
+              "evidence": "To conclude, urban trees are not decoration. They are infrastructure — as important to a healthy city as clean water or reliable transport."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

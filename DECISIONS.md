@@ -118,3 +118,11 @@
     writing endpoint imports `analyse_writing` inside the handler
     (503 if absent) so the app stays bootable if the feedback module
     is ever missing; in the shipped tree it is always present.
+
+## Phase 4 (16 Nov 2026)
+
+25. **Partner Speaking practice is DEFERRED.** Needs real learner
+    demand first — no pairing system until learners ask for it.
+26. **Store wrapper (PWA → app stores) is DEFERRED.** Needs real web
+    usage first — no app-store listing until the web app is actually
+    being used.

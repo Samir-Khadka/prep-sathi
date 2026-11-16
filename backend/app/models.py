@@ -64,6 +64,9 @@ class User(Base):
     mock_sessions: Mapped[list["MockSession"]] = relationship(
         "MockSession", back_populates="user", cascade="all, delete-orphan"
     )
+    feedback: Mapped[list["Feedback"]] = relationship(
+        "Feedback", back_populates="user", cascade="all, delete-orphan"
+    )
 
 
 class Attempt(Base):
@@ -192,3 +195,27 @@ class VocabularyItem(Base):
     __table_args__ = (
         UniqueConstraint("user_id", "word", name="uq_user_word"),
     )
+
+
+class Feedback(Base):
+    """In-app feedback from a signed-in learner (Phase 4 feedback loop).
+
+    No third-party service and no email is involved: feedback is stored
+    in-app and triaged by an admin (see routers/feedback_loop.py).
+    """
+
+    __tablename__ = "feedback"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"), nullable=False, index=True
+    )
+    category: Mapped[str] = mapped_column(String(20), nullable=False)
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    page: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    resolved: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=_now, nullable=False
+    )
+
+    user: Mapped["User"] = relationship("User", back_populates="feedback")

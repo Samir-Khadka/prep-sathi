@@ -54,11 +54,13 @@ ACADEMIC_PAIRS: list[tuple[str, str]] = [
     ("L1", "RA1"),
     ("L2", "RA2"),
     ("L3", "RA3"),
+    ("L4", "RA4"),
 ]
 GENERAL_PAIRS: list[tuple[str, str]] = [
     ("L1", "RG1"),
     ("L2", "RG1"),
     ("L3", "RG1"),
+    ("L4", "RG1"),
 ]
 WRITING_TIME_LIMIT_SECONDS = 3600
 

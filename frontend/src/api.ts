@@ -195,6 +195,23 @@ export interface VocabularyItem {
 }
 
 /* ------------------------------------------------------------------ */
+/* In-app feedback loop (Phase 4): learners send feedback in-app;    */
+/* admins triage it in-app. No third-party service, no email.        */
+/* ------------------------------------------------------------------ */
+
+export type FeedbackCategory = "bug" | "content" | "feature" | "other";
+
+export interface Feedback {
+  id: number;
+  user_id: number;
+  category: FeedbackCategory;
+  message: string;
+  page: string | null;
+  resolved: boolean;
+  created_at: string;
+}
+
+/* ------------------------------------------------------------------ */
 /* Full mocks (Phase 3): Listening → Reading → Writing → Speaking,    */
 /* in one sitting, in test order, no going back. Every band is a      */
 /* practice estimate, never an official score.                        */
@@ -498,4 +515,26 @@ export const api = {
         }),
       },
     ),
+  /* In-app feedback loop (Phase 4) */
+  submitFeedback: (payload: {
+    category: FeedbackCategory;
+    message: string;
+    page?: string | null;
+  }) =>
+    request<Feedback>("/api/feedback", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  myFeedback: () => request<Feedback[]>("/api/feedback"),
+  listFeedbackAdmin: (resolved?: boolean) =>
+    request<Feedback[]>(
+      resolved === undefined
+        ? "/api/feedback/admin"
+        : `/api/feedback/admin?resolved=${resolved}`,
+    ),
+  setFeedbackResolved: (id: number, resolved: boolean) =>
+    request<Feedback>(`/api/feedback/admin/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ resolved }),
+    }),
 };

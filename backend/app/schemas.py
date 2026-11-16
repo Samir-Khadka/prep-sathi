@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 MODULES = ("listening", "reading", "writing", "speaking")
 
@@ -371,3 +371,38 @@ class MockSpeakingCompleteResponse(BaseModel):
     overall_band: float | None
     band_label: str
     status: str
+
+
+# --- Phase 4: in-app feedback loop ------------------------------------
+
+FEEDBACK_CATEGORIES = ("bug", "content", "feature", "other")
+
+
+class FeedbackCreate(BaseModel):
+    category: str = Field(pattern="^(bug|content|feature|other)$")
+    message: str = Field(min_length=1, max_length=2000)
+    page: str | None = Field(default=None, max_length=120)
+
+    @field_validator("message")
+    @classmethod
+    def _message_not_blank(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("message must not be blank")
+        return stripped
+
+
+class FeedbackUpdate(BaseModel):
+    resolved: bool
+
+
+class FeedbackOut(BaseModel):
+    id: int
+    user_id: int
+    category: str
+    message: str
+    page: str | None
+    resolved: bool
+    created_at: datetime
+
+    model_config = {"from_attributes": True}

@@ -1861,6 +1861,444 @@
           ]
         }
       ]
+    },
+    {
+      "id": "RA4",
+      "track": "academic",
+      "title": "Academic Reading Test 4",
+      "passages": [
+        {
+          "section": 1,
+          "title": "The Sound of Silence: How Noise Affects Our Health",
+          "text": "For most of human history, the world was a quiet place. The loudest sounds people heard were thunder, a waterfall, or the roar of a crowd at a festival. Today, silence has become rare. Traffic hums outside our windows day and night, aircraft pass overhead, and in offices and classrooms, music, phones, and machines fill the air. Even inside our homes, washing machines, televisions, and game consoles add their own hum to the mix. We have grown so used to this background noise that we barely notice it. Yet a growing body of research suggests that constant noise is not just an annoyance. It is a health risk, and it affects our bodies and minds in ways that scientists are only now beginning to understand.\n\nThe most obvious harm is to our hearing. Very loud sounds can damage the tiny hair cells inside the ear, and once those cells are damaged, they do not grow back. Workers in factories, musicians, and people who listen to music at full volume through headphones are all at risk. Health experts warn that listening to personal music players at high volume for more than an hour a day can cause permanent hearing loss over time. The damage is gradual, so people often notice it only when it is too late. By then, ordinary conversation can become difficult to follow, especially in a noisy room, and hearing aids can help only partly. Concerts and nightclubs can be louder still, and a single evening in front of a large speaker can leave the ears ringing for days.\n\nNoise also disturbs our sleep, and poor sleep affects almost everything else. Studies of people living near busy roads and airports have found that they wake more often during the night, even when they do not remember waking. Their sleep is lighter and less restful. Over weeks and months, this broken sleep leaves people tired, irritable, and less able to concentrate at work or at school. The problem is worse for shift workers, who must try to sleep during the day while the world around them is at its noisiest. Children are affected too: pupils in schools near airports have been found to read more slowly than children in quieter schools, and the difference disappears only when the noise is reduced.\n\nPerhaps the most surprising finding concerns the heart. When the brain hears a sudden loud noise, it treats it as a possible danger and releases stress hormones such as adrenaline. The heart beats faster and blood pressure rises. This reaction is useful if a real danger is near, but when it happens dozens of times a day, day after day, the strain adds up. Large studies that followed people living near airports for many years found higher rates of high blood pressure and heart disease among those exposed to the most noise. The link is not proof that noise alone causes heart disease, but it is strong enough that doctors now take it seriously.\n\nNoise also shapes the way we behave towards each other. In experiments, people who had just been exposed to loud, unpleasant noise were less likely to help a stranger who had dropped their papers. Researchers suggest that noise uses up our patience and makes us less generous. In real life, the same effect may help to explain why crowded, noisy neighbourhoods often report more arguments between neighbours, and why people in noisy open-plan offices report more friction with their colleagues. In noisy classrooms, teachers report that children find it harder to listen and to remember what they have heard. Quiet, by contrast, seems to restore our ability to think clearly and to treat other people with care.\n\nThe good news is that noise can be reduced. Cities can build barriers along busy roads, plant trees and hedges that absorb sound, and create quiet zones around schools and hospitals. Quieter road surfaces and electric vehicles, which make far less engine noise than petrol cars, are already making a difference in some cities. Inside buildings, thick walls, double-glazed windows, and soft furnishings all help. Schools, too, are beginning to design quieter classrooms, with soft floors and ceilings that absorb sound. Individuals can help too, by turning the volume down, wearing ear protection at work, and keeping at least one quiet hour in the day. Silence is not empty time. For our ears, our hearts, and our minds, it is a form of rest that we can no longer afford to ignore.",
+          "questions": [
+            {
+              "no": 1,
+              "type": "tfng",
+              "prompt": "For most of human history, the world was a quiet place.",
+              "answer": "TRUE",
+              "explanation": "The passage opens by saying that for most of human history the world was a quiet place.",
+              "evidence": "For most of human history, the world was a quiet place."
+            },
+            {
+              "no": 2,
+              "type": "tfng",
+              "prompt": "Traffic noise is only heard during the day.",
+              "answer": "FALSE",
+              "explanation": "Traffic hums outside our windows day and night, not only during the day.",
+              "evidence": "Traffic hums outside our windows day and night"
+            },
+            {
+              "no": 3,
+              "type": "mcq",
+              "prompt": "What does constant noise affect, according to the passage?",
+              "options": [
+                "Only our hearing",
+                "Our bodies and minds",
+                "Only our sleep"
+              ],
+              "answer": 1,
+              "explanation": "Constant noise is a health risk that affects our bodies and minds.",
+              "evidence": "It is a health risk, and it affects our bodies and minds in ways that scientists are only now beginning to understand."
+            },
+            {
+              "no": 4,
+              "type": "tfng",
+              "prompt": "Damaged hair cells inside the ear grow back.",
+              "answer": "FALSE",
+              "explanation": "Once the tiny hair cells inside the ear are damaged, they do not grow back.",
+              "evidence": "once those cells are damaged, they do not grow back."
+            },
+            {
+              "no": 5,
+              "type": "short",
+              "prompt": "Listening to music at high volume for more than ___ a day can cause permanent hearing loss.",
+              "answers": [
+                "an hour",
+                "one hour",
+                "1 hour"
+              ],
+              "explanation": "Listening to personal music players at high volume for more than an hour a day can cause permanent hearing loss over time.",
+              "evidence": "listening to personal music players at high volume for more than an hour a day can cause permanent hearing loss over time."
+            },
+            {
+              "no": 6,
+              "type": "mcq",
+              "prompt": "What happens to the sleep of people living near busy roads and airports?",
+              "options": [
+                "They sleep more deeply",
+                "They wake more often during the night",
+                "They fall asleep more quickly"
+              ],
+              "answer": 1,
+              "explanation": "They wake more often during the night, even when they do not remember waking.",
+              "evidence": "they wake more often during the night, even when they do not remember waking."
+            },
+            {
+              "no": 7,
+              "type": "tfng",
+              "prompt": "Pupils in schools near airports read more slowly than children in quieter schools.",
+              "answer": "TRUE",
+              "explanation": "The passage states this finding directly.",
+              "evidence": "pupils in schools near airports have been found to read more slowly than children in quieter schools"
+            },
+            {
+              "no": 8,
+              "type": "short",
+              "prompt": "When the brain hears a sudden loud noise, it releases stress hormones such as ___.",
+              "answers": [
+                "adrenaline"
+              ],
+              "explanation": "The brain treats a sudden loud noise as a possible danger and releases stress hormones such as adrenaline.",
+              "evidence": "it treats it as a possible danger and releases stress hormones such as adrenaline."
+            },
+            {
+              "no": 9,
+              "type": "mcq",
+              "prompt": "What did long studies of people living near airports find?",
+              "options": [
+                "Lower rates of heart disease",
+                "Higher rates of high blood pressure and heart disease",
+                "No difference in health"
+              ],
+              "answer": 1,
+              "explanation": "The studies found higher rates of high blood pressure and heart disease among those exposed to the most noise.",
+              "evidence": "found higher rates of high blood pressure and heart disease among those exposed to the most noise."
+            },
+            {
+              "no": 10,
+              "type": "tfng",
+              "prompt": "The link between noise and heart disease is absolute proof that noise alone causes it.",
+              "answer": "FALSE",
+              "explanation": "The passage says the link is not proof that noise alone causes heart disease.",
+              "evidence": "The link is not proof that noise alone causes heart disease, but it is strong enough that doctors now take it seriously."
+            },
+            {
+              "no": 11,
+              "type": "mcq",
+              "prompt": "In experiments, people exposed to loud, unpleasant noise were...",
+              "options": [
+                "More likely to help a stranger",
+                "Less likely to help a stranger",
+                "Unaffected in their behaviour"
+              ],
+              "answer": 1,
+              "explanation": "They were less likely to help a stranger who had dropped their papers.",
+              "evidence": "people who had just been exposed to loud, unpleasant noise were less likely to help a stranger who had dropped their papers."
+            },
+            {
+              "no": 12,
+              "type": "short",
+              "prompt": "Noise uses up our ___ and makes us less generous.",
+              "answers": [
+                "patience"
+              ],
+              "explanation": "Researchers suggest that noise uses up our patience and makes us less generous.",
+              "evidence": "Researchers suggest that noise uses up our patience and makes us less generous."
+            },
+            {
+              "no": 13,
+              "type": "tfng",
+              "prompt": "Electric vehicles make far less engine noise than petrol cars.",
+              "answer": "TRUE",
+              "explanation": "The passage says electric vehicles make far less engine noise than petrol cars.",
+              "evidence": "electric vehicles, which make far less engine noise than petrol cars, are already making a difference in some cities."
+            },
+            {
+              "no": 14,
+              "type": "mcq",
+              "prompt": "According to the passage, silence is...",
+              "options": [
+                "Empty time with no value",
+                "A form of rest for our ears, hearts and minds",
+                "Only useful for sleep"
+              ],
+              "answer": 1,
+              "explanation": "Silence is a form of rest for our ears, our hearts, and our minds.",
+              "evidence": "Silence is not empty time. For our ears, our hearts, and our minds, it is a form of rest that we can no longer afford to ignore."
+            }
+          ]
+        },
+        {
+          "section": 2,
+          "title": "From Shells to Smartphones: A Short History of Money",
+          "text": "Money is one of the most powerful inventions in human history, yet it has no value in itself. A banknote is only a piece of printed paper, and a coin is only a small disc of metal. Money works because everyone agrees to accept it. That agreement, built on trust, has taken thousands of years to develop, and the form that money takes has changed again and again.\n\nLong before coins existed, people traded directly, swapping grain for goats or fish for tools. This system, known as barter, worked well in small communities, but it had an obvious weakness: a farmer with extra wheat could not always find a fisherman who needed wheat. To solve this problem, societies began to use objects that everyone wanted as a middle step in a trade. In different parts of the world, these early forms of money included shells, beads, salt, and even cattle. In parts of Africa, cowrie shells were used as money for centuries, and they were small, durable, and easy to carry — all the qualities that good money needs.\n\nThe first true coins appeared about two thousand six hundred years ago, in a region of western Asia known as Lydia. They were small lumps of gold and silver, stamped with a mark that guaranteed their weight and purity. The idea spread quickly. Coins were easier to carry than cattle, harder to fake than shells, and they could be divided into smaller pieces for small purchases. Greek cities, the Roman Empire, and later the kingdoms of India and China all minted their own coins, and the face of a ruler stamped on a coin became a powerful symbol of authority.\n\nFor much of the nineteenth and early twentieth centuries, many countries tied their money to gold. A pound or a dollar could be exchanged for a fixed weight of gold, and this system, known as the gold standard, gave people confidence that their money would keep its value. It also limited what governments could do: they could not simply print more money, because every note had to be backed by gold in a vault. The gold standard ended in the twentieth century, when governments needed more freedom to manage their economies, especially during wars and economic crises. Since then, most money has been backed by nothing more than the promise of the government that issued it, and by the trust of the people who use it.\n\nPaper money came much later, and it began in China. By the ninth century, Chinese merchants were using paper notes to avoid carrying heavy strings of coins over long distances. At first, these notes were simply promises: a merchant could take a note to a bank and exchange it for coins. Over time, governments began to print their own notes, and people accepted them because the government promised to honour them. When the traveller Marco Polo visited China in the thirteenth century, he was amazed to see paper used as money, and he described it in detail for readers in Europe, where the idea seemed almost unbelievable.\n\nIn Europe, paper money arrived slowly. Banks began to issue their own notes in the seventeenth century, and governments followed. The next great change was the cheque, which allowed people to pay large sums without carrying cash at all. Then, in the twentieth century, came plastic cards. The first credit cards appeared in the United States in the nineteen fifties, and cash machines followed in the nineteen sixties. Suddenly, people could spend money they did not physically carry, and banks could record every transaction. For the first time, money became mostly a set of numbers in a computer.\n\nThe latest chapter is still being written. In many countries, mobile phones have replaced cash for everyday payments, and in parts of Africa and Asia, people who never had a bank account now pay, save, and borrow using only a phone. At the same time, new forms of digital money, known as cryptocurrencies, have appeared. They are not issued by any government, and their value can rise and fall sharply in a single day. Some people see them as the future of money; others see them as a risky experiment. What is certain is that money will keep changing. From shells to smartphones, its history is the story of a simple idea — trust — finding new forms.",
+          "questions": [
+            {
+              "no": 15,
+              "type": "tfng",
+              "prompt": "A banknote has value in itself because it is printed paper.",
+              "answer": "FALSE",
+              "explanation": "A banknote is only a piece of printed paper; money works because everyone agrees to accept it.",
+              "evidence": "A banknote is only a piece of printed paper, and a coin is only a small disc of metal."
+            },
+            {
+              "no": 16,
+              "type": "mcq",
+              "prompt": "Why did societies start using objects like shells as money?",
+              "options": [
+                "Because barter had an obvious weakness",
+                "Because coins were too heavy",
+                "Because governments ordered it"
+              ],
+              "answer": 0,
+              "explanation": "Barter worked in small communities, but a farmer could not always find someone who needed what he had.",
+              "evidence": "This system, known as barter, worked well in small communities, but it had an obvious weakness: a farmer with extra wheat could not always find a fisherman who needed wheat."
+            },
+            {
+              "no": 17,
+              "type": "short",
+              "prompt": "Cowrie shells were used as money in parts of ___ for centuries.",
+              "answers": [
+                "Africa"
+              ],
+              "explanation": "In parts of Africa, cowrie shells were used as money for centuries.",
+              "evidence": "In parts of Africa, cowrie shells were used as money for centuries"
+            },
+            {
+              "no": 18,
+              "type": "tfng",
+              "prompt": "The first true coins appeared in Lydia about two thousand six hundred years ago.",
+              "answer": "TRUE",
+              "explanation": "The passage states that the first true coins appeared about two thousand six hundred years ago in Lydia.",
+              "evidence": "The first true coins appeared about two thousand six hundred years ago, in a region of western Asia known as Lydia."
+            },
+            {
+              "no": 19,
+              "type": "mcq",
+              "prompt": "What did the stamp on a coin guarantee?",
+              "options": [
+                "The ruler's name",
+                "Its weight and purity",
+                "The date it was made"
+              ],
+              "answer": 1,
+              "explanation": "Coins were stamped with a mark that guaranteed their weight and purity.",
+              "evidence": "stamped with a mark that guaranteed their weight and purity."
+            },
+            {
+              "no": 20,
+              "type": "short",
+              "prompt": "Paper money began in ___.",
+              "answers": [
+                "China"
+              ],
+              "explanation": "Paper money came much later, and it began in China.",
+              "evidence": "Paper money came much later, and it began in China."
+            },
+            {
+              "no": 21,
+              "type": "tfng",
+              "prompt": "Chinese merchants used paper notes to avoid carrying heavy strings of coins.",
+              "answer": "TRUE",
+              "explanation": "Chinese merchants used paper notes to avoid carrying heavy strings of coins over long distances.",
+              "evidence": "Chinese merchants were using paper notes to avoid carrying heavy strings of coins over long distances."
+            },
+            {
+              "no": 22,
+              "type": "mcq",
+              "prompt": "Why was Marco Polo amazed when he visited China?",
+              "options": [
+                "He saw paper used as money",
+                "He saw gold coins for the first time",
+                "He saw banks lending money"
+              ],
+              "answer": 0,
+              "explanation": "He was amazed to see paper used as money.",
+              "evidence": "he was amazed to see paper used as money"
+            },
+            {
+              "no": 23,
+              "type": "short",
+              "prompt": "The first credit cards appeared in the United States in the nineteen ___.",
+              "answers": [
+                "fifties",
+                "1950s"
+              ],
+              "explanation": "The first credit cards appeared in the United States in the nineteen fifties.",
+              "evidence": "The first credit cards appeared in the United States in the nineteen fifties"
+            },
+            {
+              "no": 24,
+              "type": "tfng",
+              "prompt": "Cash machines appeared before credit cards.",
+              "answer": "FALSE",
+              "explanation": "Credit cards appeared in the nineteen fifties, and cash machines followed in the nineteen sixties.",
+              "evidence": "The first credit cards appeared in the United States in the nineteen fifties, and cash machines followed in the nineteen sixties."
+            },
+            {
+              "no": 25,
+              "type": "mcq",
+              "prompt": "In parts of Africa and Asia, what do people who never had a bank account now use to pay, save and borrow?",
+              "options": [
+                "Only a phone",
+                "Only a bank account",
+                "Only cash"
+              ],
+              "answer": 0,
+              "explanation": "They now pay, save, and borrow using only a phone.",
+              "evidence": "people who never had a bank account now pay, save, and borrow using only a phone."
+            },
+            {
+              "no": 26,
+              "type": "short",
+              "prompt": "Cryptocurrencies are not issued by any ___.",
+              "answers": [
+                "government"
+              ],
+              "explanation": "Cryptocurrencies are not issued by any government.",
+              "evidence": "They are not issued by any government, and their value can rise and fall sharply in a single day."
+            },
+            {
+              "no": 27,
+              "type": "tfng",
+              "prompt": "The passage says money's history is the story of trust finding new forms.",
+              "answer": "TRUE",
+              "explanation": "The passage closes by saying money's history is the story of trust finding new forms.",
+              "evidence": "From shells to smartphones, its history is the story of a simple idea — trust — finding new forms."
+            }
+          ]
+        },
+        {
+          "section": 3,
+          "title": "The Secret Life of Soil",
+          "text": "To most of us, soil looks dull and lifeless: a brown layer under our feet, useful for growing plants and little else. In reality, a single handful of healthy soil contains more living organisms than there are people on Earth. Bacteria, fungi, worms, beetles, and countless microscopic creatures live, feed, and die in the dark, and together they form one of the most complex ecosystems on the planet. Without them, there would be no food, no forests, and no life as we know it.\n\nThe smallest inhabitants do the most work. Bacteria and fungi break down dead leaves, fallen trees, and animal waste, turning them back into the nutrients that plants need to grow. Without these decomposers, dead material would pile up for ever, and the nutrients locked inside it would never return to the soil. A single gram of soil can hold billions of bacteria, belonging to thousands of different species, each playing its own small part in the cycle. Scientists are still discovering new species in ordinary garden soil, and most of them have never been given a name. Some bacteria can even break down oil and other pollutants, and scientists are now studying them as a way to clean up polluted land.\n\nSome of the most remarkable soil life belongs to the fungi. Beneath the forest floor, the thread-like roots of fungi, called hyphae, spread for kilometres, joining tree after tree into a single underground network. Through this network, trees share water and nutrients, and they can even send warning signals to each other when insects attack. Young seedlings that connect to the network grow faster than those that do not, because older trees pass them food through the fungal threads. Foresters now call this hidden system the wood wide web, and it has changed the way scientists think about forests: not as a collection of separate trees, but as a community.\n\nLarger creatures play their part too. Earthworms are the great engineers of the soil. As they burrow, they mix the soil, pull dead leaves underground, and leave behind tunnels that let air and water reach the roots of plants. Their droppings, known as worm casts, are richer in nutrients than the surrounding soil. A healthy field can contain hundreds of earthworms in every square metre, and Charles Darwin, who studied them for forty years, concluded that worms had played a larger part in shaping the history of the world than most people would believe. Darwin was so fascinated by worms that he kept them in pots in his study and played the piano to them, to see whether they could hear.\n\nSoil also holds one of the keys to the climate. The soil of the world stores more carbon than the atmosphere and all the living plants on Earth combined. Plants take carbon dioxide from the air and turn it into leaves and roots; when those roots die, much of the carbon stays in the soil for hundreds of years. Farming practices that disturb the soil, such as deep ploughing, release this carbon back into the air. Practices that protect the soil, such as planting cover crops and ploughing less, keep the carbon locked away. In this way, the health of the soil is directly linked to the health of the climate. A spoonful of soil may also hold the cure for a future disease: many of our most important medicines, including several antibiotics, were first found in soil bacteria.\n\nYet soil is being lost at an alarming rate. Wind and water strip away topsoil from bare fields, and it takes centuries for nature to build a single centimetre of new topsoil. Intensive farming, the heavy use of chemicals, and the spread of cities over farmland all add to the damage. The good news is that soil can recover if it is given the chance. Farmers who plant a mix of crops, leave crop remains on the field, and add compost instead of relying only on chemical fertiliser often see their soil come back to life within a few years, with more worms, darker colour, and better harvests. Some cities are now protecting their soil too, by turning empty land into community gardens where people grow food and learn how soil works. The ground beneath our feet is not dirt. It is a living world, and our future depends on keeping it alive.",
+          "questions": [
+            {
+              "no": 28,
+              "type": "tfng",
+              "prompt": "A single handful of healthy soil contains more living organisms than there are people on Earth.",
+              "answer": "TRUE",
+              "explanation": "The passage states this directly in its opening paragraph.",
+              "evidence": "a single handful of healthy soil contains more living organisms than there are people on Earth."
+            },
+            {
+              "no": 29,
+              "type": "mcq",
+              "prompt": "What do bacteria and fungi do in the soil?",
+              "options": [
+                "They break down dead material into nutrients plants need",
+                "They eat the roots of living plants",
+                "They make the soil dry and hard"
+              ],
+              "answer": 0,
+              "explanation": "They break down dead leaves, fallen trees, and animal waste, turning them back into nutrients plants need.",
+              "evidence": "Bacteria and fungi break down dead leaves, fallen trees, and animal waste, turning them back into the nutrients that plants need to grow."
+            },
+            {
+              "no": 30,
+              "type": "short",
+              "prompt": "A single gram of soil can hold ___ of bacteria.",
+              "answers": [
+                "billions"
+              ],
+              "explanation": "A single gram of soil can hold billions of bacteria.",
+              "evidence": "A single gram of soil can hold billions of bacteria"
+            },
+            {
+              "no": 31,
+              "type": "tfng",
+              "prompt": "Most of the bacteria species in ordinary garden soil have been given names.",
+              "answer": "FALSE",
+              "explanation": "Most of the newly discovered species have never been given a name.",
+              "evidence": "most of them have never been given a name."
+            },
+            {
+              "no": 32,
+              "type": "mcq",
+              "prompt": "What are hyphae?",
+              "options": [
+                "The thread-like roots of fungi",
+                "The roots of young trees",
+                "Small insects that live in soil"
+              ],
+              "answer": 0,
+              "explanation": "Hyphae are the thread-like roots of fungi that spread for kilometres under the forest floor.",
+              "evidence": "the thread-like roots of fungi, called hyphae, spread for kilometres"
+            },
+            {
+              "no": 33,
+              "type": "short",
+              "prompt": "Through the fungal network, trees share water and ___.",
+              "answers": [
+                "nutrients"
+              ],
+              "explanation": "Through the network, trees share water and nutrients.",
+              "evidence": "Through this network, trees share water and nutrients"
+            },
+            {
+              "no": 34,
+              "type": "tfng",
+              "prompt": "Young seedlings connected to the fungal network grow faster than those that do not connect.",
+              "answer": "TRUE",
+              "explanation": "Seedlings that connect to the network grow faster than those that do not.",
+              "evidence": "Young seedlings that connect to the network grow faster than those that do not"
+            },
+            {
+              "no": 35,
+              "type": "mcq",
+              "prompt": "What do earthworms leave behind as they burrow?",
+              "options": [
+                "Tunnels that let air and water reach plant roots",
+                "Poison that kills bacteria",
+                "Stones that block the roots"
+              ],
+              "answer": 0,
+              "explanation": "Their tunnels let air and water reach the roots of plants.",
+              "evidence": "leave behind tunnels that let air and water reach the roots of plants."
+            },
+            {
+              "no": 36,
+              "type": "short",
+              "prompt": "Earthworm droppings are known as worm ___.",
+              "answers": [
+                "casts"
+              ],
+              "explanation": "Earthworm droppings are known as worm casts.",
+              "evidence": "Their droppings, known as worm casts, are richer in nutrients than the surrounding soil."
+            },
+            {
+              "no": 37,
+              "type": "tfng",
+              "prompt": "Charles Darwin studied earthworms for forty years.",
+              "answer": "TRUE",
+              "explanation": "The passage says Charles Darwin studied earthworms for forty years.",
+              "evidence": "Charles Darwin, who studied them for forty years"
+            },
+            {
+              "no": 38,
+              "type": "mcq",
+              "prompt": "What does the world's soil store more of than the atmosphere and all living plants combined?",
+              "options": [
+                "Carbon",
+                "Water",
+                "Nitrogen"
+              ],
+              "answer": 0,
+              "explanation": "The soil of the world stores more carbon than the atmosphere and all the living plants on Earth combined.",
+              "evidence": "The soil of the world stores more carbon than the atmosphere and all the living plants on Earth combined."
+            },
+            {
+              "no": 39,
+              "type": "short",
+              "prompt": "Deep ploughing releases carbon back into the ___.",
+              "answers": [
+                "air"
+              ],
+              "explanation": "Farming practices that disturb the soil, such as deep ploughing, release carbon back into the air.",
+              "evidence": "such as deep ploughing, release this carbon back into the air."
+            },
+            {
+              "no": 40,
+              "type": "tfng",
+              "prompt": "It takes centuries for nature to build a single centimetre of new topsoil.",
+              "answer": "TRUE",
+              "explanation": "The passage states that it takes centuries to build a single centimetre of new topsoil.",
+              "evidence": "it takes centuries for nature to build a single centimetre of new topsoil."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

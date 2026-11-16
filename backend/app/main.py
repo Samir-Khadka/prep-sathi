@@ -1,4 +1,4 @@
-"""PrepSathi API — FastAPI backend (Phase 2 MVP).
+"""PrepSathi API — FastAPI backend (Phase 4 — launch readiness).
 
 Free IELTS-format practice for Nepali phone-first learners. All practice
 content is original and written to the official format; no Cambridge
@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import config
 from .database import init_db
-from .routers import attempts, auth, dashboard, mock, modules, practice, resources, vocabulary
+from .routers import attempts, auth, dashboard, feedback_loop, mock, modules, practice, resources, vocabulary
 
 
 @asynccontextmanager
@@ -30,7 +30,7 @@ app = FastAPI(
         "All practice content is original; band scores shown anywhere "
         "are practice estimates, not official scores."
     ),
-    version="0.3.0",
+    version="0.4.0",
     lifespan=lifespan,
 )
 
@@ -50,8 +50,9 @@ app.include_router(attempts.router, prefix="/api")
 app.include_router(vocabulary.router, prefix="/api")
 app.include_router(practice.router, prefix="/api")
 app.include_router(mock.router, prefix="/api")
+app.include_router(feedback_loop.router, prefix="/api")
 
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "app": "prepsathi", "version": "0.3.0"}
+    return {"status": "ok", "app": "prepsathi", "version": "0.4.0"}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HashRouter, Link, Route, Routes, useNavigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./auth";
 import Dashboard from "./pages/Dashboard";
+import Feedback from "./pages/Feedback";
 import Home from "./pages/Home";
 import ListeningTestPage from "./pages/ListeningTest";
 import Login from "./pages/Login";
@@ -13,6 +14,7 @@ import PracticeListening from "./pages/PracticeListening";
 import PracticeReading from "./pages/PracticeReading";
 import PracticeSpeaking from "./pages/PracticeSpeaking";
 import PracticeWriting from "./pages/PracticeWriting";
+import Privacy from "./pages/Privacy";
 import ReadingTestPage from "./pages/ReadingTest";
 import Resources from "./pages/Resources";
 import Signup from "./pages/Signup";
@@ -32,6 +34,7 @@ function Nav() {
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/vocabulary">Vocabulary</Link>
           <Link to="/mock">Full mock</Link>
+          <Link to="/feedback">Feedback</Link>
           <button
             className="secondary"
             onClick={() => {
@@ -110,6 +113,8 @@ export default function App() {
             <Route path="/mock/:id" element={<MockRunner />} />
             <Route path="/mock/:id/results" element={<MockResults />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/feedback" element={<Feedback />} />
             <Route path="/module/:slug" element={<ModulePage />} />
           </Routes>
           <p className="honesty">
@@ -123,6 +128,10 @@ export default function App() {
           <p>
             PrepSathi — free IELTS-format practice for Nepali phone-first
             learners.
+          </p>
+          <p>
+            <Link to="/privacy">Privacy</Link> ·{" "}
+            <Link to="/feedback">Send feedback</Link>
           </p>
         </footer>
       </HashRouter>

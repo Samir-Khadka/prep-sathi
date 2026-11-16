@@ -439,3 +439,59 @@ table.attempts th {
   border-color: var(--gold);
   color: var(--muted);
 }
+
+/* --- Phase 4: landing page (light premium, matches the existing palette;
+   no new colours, no black backgrounds) --- */
+
+.section-intro {
+  color: var(--muted);
+  max-width: 640px;
+  margin-top: -4px;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.steps li {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.steps h3 {
+  margin: 8px 0 4px;
+  font-size: 1.05rem;
+}
+
+.steps p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.free-strip {
+  border-left: 4px solid var(--gold);
+}
+
+.free-strip h2 {
+  color: var(--primary);
+}
