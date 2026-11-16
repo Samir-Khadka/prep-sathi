@@ -99,7 +99,7 @@ def test_listening_list(user_token: dict) -> None:
     resp = client.get("/api/practice/listening", headers=user_headers(user_token))
     assert resp.status_code == 200, resp.text
     data = resp.json()
-    assert len(data) == 2
+    assert len(data) == 3
     assert data[0]["total_questions"] == 40
     assert data[0]["time_limit_seconds"] == 1920
     assert all(part["has_audio"] is False for test in data for part in test["parts"])
@@ -244,7 +244,7 @@ def test_reading_lists_by_track(user_token: dict) -> None:
     headers = user_headers(user_token)
     academic = client.get("/api/practice/reading?track=academic", headers=headers)
     assert academic.status_code == 200, academic.text
-    assert len(academic.json()) == 2
+    assert len(academic.json()) == 3
     general = client.get("/api/practice/reading?track=general", headers=headers)
     assert general.status_code == 200, general.text
     assert len(general.json()) == 1

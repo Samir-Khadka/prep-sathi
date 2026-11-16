@@ -400,3 +400,42 @@ table.attempts th {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* --- Phase 3: full-mock progress strip (light premium, matches the
+   existing palette; no new colours) --- */
+
+.mock-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.mock-step {
+  flex: 1 1 120px;
+  text-align: center;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.mock-step.active {
+  border-color: var(--gold);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.mock-step.done {
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.mock-step.expired {
+  border-color: var(--gold);
+  color: var(--muted);
+}

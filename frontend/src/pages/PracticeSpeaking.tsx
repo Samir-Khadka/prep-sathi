@@ -1,8 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { api, type SpeakingSet } from "../api";
+import { api, BAND_LABEL, type SpeakingSet } from "../api";
 import { useAuth } from "../auth";
-import { formatTime } from "./practiceShared";
+import { BandLabel, formatTime } from "./practiceShared";
+import {
+  clearSpeakingRecordings,
+  createFluencyTracker,
+  createSpeakingPlaybackUrl,
+  deleteSpeakingRecording,
+  getSpeakingRecordingBlob,
+  listSpeakingRecordings,
+  MAX_SPEAKING_RECORDINGS,
+  revokeAllSpeakingPlaybackUrls,
+  revokeSpeakingPlaybackUrl,
+  saveSpeakingRecording,
+  SPEAKING_TARGET_SECONDS,
+  type FluencyEstimate,
+  type FluencyTracker,
+  type SpeakingRecordingMeta,
+} from "../speakingHistory";
 
 type Phase = "idle" | "prep" | "talk" | "done";
 
@@ -30,6 +46,39 @@ export default function PracticeSpeaking() {
   const recorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<Blob[]>([]);
+  const fluencyTrackerRef = useRef<FluencyTracker | null>(null);
+  const recordingStartedAtRef = useRef<number | null>(null);
+
+  // The finished recording waiting to be saved, if the learner chooses.
+  const [lastRecording, setLastRecording] = useState<{
+    blob: Blob;
+    mimeType: string;
+    durationSeconds: number;
+    fluency: FluencyEstimate | null;
+  } | null>(null);
+  const [savedToHistory, setSavedToHistory] = useState(false);
+  const [savingRecording, setSavingRecording] = useState(false);
+
+  // On-device history (IndexedDB — recordings never leave this device).
+  const [history, setHistory] = useState<SpeakingRecordingMeta[]>([]);
+  const [historyLoading, setHistoryLoading] = useState(true);
+  const [playbackUrls, setPlaybackUrls] = useState<Record<string, string>>(
+    {},
+  );
+
+  async function refreshHistory() {
+    try {
+      setHistory(await listSpeakingRecordings());
+    } catch {
+      setError("Could not load your saved recordings.");
+    } finally {
+      setHistoryLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void refreshHistory();
+  }, []);
 
   useEffect(() => {
     api
@@ -81,6 +130,7 @@ export default function PracticeSpeaking() {
     () => () => {
       streamRef.current?.getTracks().forEach((t) => t.stop());
       if (audioUrl) URL.revokeObjectURL(audioUrl);
+      revokeAllSpeakingPlaybackUrls();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -104,6 +154,10 @@ export default function PracticeSpeaking() {
     setPhase("idle");
     setCompleted(false);
     setAudioUrl(null);
+    setLastRecording(null);
+    setSavedToHistory(false);
+    setPlaybackUrls({});
+    revokeAllSpeakingPlaybackUrls();
     startedAtRef.current = null;
   }
 
@@ -122,6 +176,14 @@ export default function PracticeSpeaking() {
       });
       streamRef.current = stream;
       chunksRef.current = [];
+      recordingStartedAtRef.current = Date.now();
+      // Fluency is measured live from the mic volume; if the Web Audio
+      // API is unavailable the recording still works, just without an
+      // estimate.
+      fluencyTrackerRef.current = createFluencyTracker(
+        stream,
+        set?.part2.talk_seconds ?? SPEAKING_TARGET_SECONDS,
+      );
       const recorder = new MediaRecorder(stream);
       recorderRef.current = recorder;
       recorder.ondataavailable = (e) => {
@@ -131,6 +193,23 @@ export default function PracticeSpeaking() {
         const blob = new Blob(chunksRef.current, {
           type: recorder.mimeType || "audio/webm",
         });
+        const durationSeconds = recordingStartedAtRef.current
+          ? Math.max(
+              1,
+              Math.round(
+                (Date.now() - recordingStartedAtRef.current) / 1000,
+              ),
+            )
+          : 0;
+        const fluency = fluencyTrackerRef.current?.stop() ?? null;
+        fluencyTrackerRef.current = null;
+        setLastRecording({
+          blob,
+          mimeType: blob.type || "audio/webm",
+          durationSeconds,
+          fluency,
+        });
+        setSavedToHistory(false);
         setAudioUrl((old) => {
           if (old) URL.revokeObjectURL(old);
           return URL.createObjectURL(blob);
@@ -149,6 +228,82 @@ export default function PracticeSpeaking() {
   function stopRecording() {
     recorderRef.current?.stop();
     setRecording(false);
+  }
+
+  /** Saving is explicit — a recording is only stored when the learner asks. */
+  async function saveRecording() {
+    if (!set || !lastRecording || savingRecording) return;
+    setSavingRecording(true);
+    try {
+      await saveSpeakingRecording({
+        setId: set.id,
+        topic: set.topic,
+        part: "Part 2",
+        durationSeconds: lastRecording.durationSeconds,
+        blob: lastRecording.blob,
+        mimeType: lastRecording.mimeType,
+        fluency: lastRecording.fluency,
+      });
+      setSavedToHistory(true);
+      await refreshHistory();
+    } catch {
+      setError(
+        "Could not save this recording on your device. Your browser may be blocking on-device storage.",
+      );
+    } finally {
+      setSavingRecording(false);
+    }
+  }
+
+  async function playRecording(id: string) {
+    if (playbackUrls[id]) return;
+    try {
+      const blob = await getSpeakingRecordingBlob(id);
+      if (!blob) {
+        setError("That recording could not be found on this device.");
+        return;
+      }
+      const url = createSpeakingPlaybackUrl(id, blob);
+      setPlaybackUrls((prev) => ({ ...prev, [id]: url }));
+    } catch {
+      setError("Could not play that recording.");
+    }
+  }
+
+  function hidePlayback(id: string) {
+    revokeSpeakingPlaybackUrl(id);
+    setPlaybackUrls((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  }
+
+  async function deleteRecording(id: string) {
+    hidePlayback(id);
+    try {
+      await deleteSpeakingRecording(id);
+      await refreshHistory();
+    } catch {
+      setError("Could not delete that recording.");
+    }
+  }
+
+  async function clearAllRecordings() {
+    if (
+      !window.confirm(
+        "Delete all your saved speaking recordings from this device?",
+      )
+    ) {
+      return;
+    }
+    setPlaybackUrls({});
+    try {
+      await clearSpeakingRecordings();
+      await refreshHistory();
+    } catch {
+      setError("Could not delete your recordings.");
+    }
   }
 
   async function markComplete() {
@@ -276,6 +431,49 @@ export default function PracticeSpeaking() {
                 <audio controls src={audioUrl} />
               </p>
             )}
+            {lastRecording && (
+              <div>
+                {lastRecording.fluency ? (
+                  <>
+                    <p>
+                      <strong>
+                        Band {lastRecording.fluency.bandLow.toFixed(1)}–
+                        {lastRecording.fluency.bandHigh.toFixed(1)}
+                      </strong>{" "}
+                      <BandLabel />
+                    </p>
+                    <ul className="clean">
+                      {lastRecording.fluency.notes.map((note, i) => (
+                        <li key={i}>{note}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p className="notice">
+                    No fluency estimate for this recording — your browser
+                    could not measure the microphone volume while
+                    recording.
+                  </p>
+                )}
+                {savedToHistory ? (
+                  <p className="notice">
+                    Saved to your recordings below — it stays on this
+                    device and is never uploaded.
+                  </p>
+                ) : (
+                  <p>
+                    <button
+                      onClick={() => void saveRecording()}
+                      disabled={savingRecording}
+                    >
+                      {savingRecording
+                        ? "Saving…"
+                        : "Save this recording to my history"}
+                    </button>
+                  </p>
+                )}
+              </div>
+            )}
             {set.sample_answer && (
               <details>
                 <summary>Read a sample talk</summary>
@@ -304,6 +502,97 @@ export default function PracticeSpeaking() {
                   {completing ? "Saving…" : "Mark this set complete"}
                 </button>
               </p>
+            )}
+          </section>
+
+          <section className="card">
+            <h2>My recordings</h2>
+            <p>
+              Recordings are stored only on this device — they are never
+              uploaded or sent anywhere. Only your{" "}
+              {MAX_SPEAKING_RECORDINGS} most recent recordings are kept;
+              older ones are removed automatically.
+            </p>
+            <p className="notice">
+              Any band range shown here is guidance from timing signals
+              only — it cannot judge pronunciation, vocabulary, or ideas.
+              ({BAND_LABEL})
+            </p>
+            {historyLoading ? (
+              <p>Loading…</p>
+            ) : history.length === 0 ? (
+              <p>
+                No recordings saved yet. Record a Part 2 talk above and
+                choose “Save this recording to my history” to keep it here
+                so you can listen back later.
+              </p>
+            ) : (
+              <>
+                <p>
+                  <button
+                    className="secondary"
+                    onClick={() => void clearAllRecordings()}
+                  >
+                    Delete all
+                  </button>
+                </p>
+                <ul className="clean">
+                  {history.map((rec) => (
+                    <li key={rec.id}>
+                      <p>
+                        <strong>{rec.topic}</strong> — {rec.part}
+                      </p>
+                      <p>
+                        {new Date(rec.createdAt).toLocaleDateString(
+                          undefined,
+                          {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          },
+                        )}{" "}
+                        {new Date(rec.createdAt).toLocaleTimeString(
+                          undefined,
+                          { hour: "2-digit", minute: "2-digit" },
+                        )}{" "}
+                        · {formatTime(rec.durationSeconds)}
+                        {rec.fluency
+                          ? ` · Band ${rec.fluency.bandLow.toFixed(1)}–${rec.fluency.bandHigh.toFixed(1)} (${rec.fluency.bandLabel})`
+                          : " · no fluency estimate"}
+                      </p>
+                      {rec.fluency && (
+                        <p>{rec.fluency.notes[0]}</p>
+                      )}
+                      <p>
+                        {playbackUrls[rec.id] ? (
+                          <>
+                            <audio controls src={playbackUrls[rec.id]} />{" "}
+                            <button
+                              className="secondary"
+                              onClick={() => hidePlayback(rec.id)}
+                            >
+                              Hide player
+                            </button>
+                          </>
+                        ) : (
+                          <button
+                            className="secondary"
+                            onClick={() => void playRecording(rec.id)}
+                          >
+                            Play
+                          </button>
+                        )}{" "}
+                        <button
+                          className="secondary"
+                          onClick={() => void deleteRecording(rec.id)}
+                        >
+                          Delete
+                        </button>
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
           </section>
         </>

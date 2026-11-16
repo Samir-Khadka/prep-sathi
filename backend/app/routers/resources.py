@@ -2,7 +2,9 @@
 
 PrepSathi links out to the IELTS partners' own free material — it never
 mirrors or re-hosts their files, and it contains no Cambridge book
-content. URLs were verified live in November 2026.
+content. URLs were verified live in November 2026 (re-checked
+16 November 2026; the British Council familiarisation link was
+corrected to the direct familiarisation-test page).
 """
 from __future__ import annotations
 
@@ -36,11 +38,12 @@ OFFICIAL_RESOURCES: list[dict] = [
     },
     {
         "title": "British Council — familiarisation test",
-        "url": "https://takeielts.britishcouncil.org/en-gb/prepare",
+        "url": "https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests/ielts-familiarisation-test",
         "description": (
-            "Full-length Listening, Reading and Writing on the real "
-            "computer-test screens, so the test-day interface is not a "
-            "surprise. Start here before your first full mock."
+            "The official sample of the complete test on the real "
+            "computer-test screens — all four skills, Academic and "
+            "General Training, with free Listening and Reading results. "
+            "Start here before your first full mock."
         ),
         "provider": "British Council",
     },

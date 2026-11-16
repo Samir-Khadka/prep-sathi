@@ -6,6 +6,9 @@ import Home from "./pages/Home";
 import ListeningTestPage from "./pages/ListeningTest";
 import Login from "./pages/Login";
 import ModulePage from "./pages/ModulePage";
+import MockList from "./pages/MockList";
+import MockResults from "./pages/MockResults";
+import MockRunner from "./pages/MockRunner";
 import PracticeListening from "./pages/PracticeListening";
 import PracticeReading from "./pages/PracticeReading";
 import PracticeSpeaking from "./pages/PracticeSpeaking";
@@ -28,6 +31,7 @@ function Nav() {
         <>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/vocabulary">Vocabulary</Link>
+          <Link to="/mock">Full mock</Link>
           <button
             className="secondary"
             onClick={() => {
@@ -102,6 +106,9 @@ export default function App() {
             />
             <Route path="/practice/writing" element={<PracticeWriting />} />
             <Route path="/practice/speaking" element={<PracticeSpeaking />} />
+            <Route path="/mock" element={<MockList />} />
+            <Route path="/mock/:id" element={<MockRunner />} />
+            <Route path="/mock/:id/results" element={<MockResults />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/module/:slug" element={<ModulePage />} />
           </Routes>

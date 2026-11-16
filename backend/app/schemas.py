@@ -268,3 +268,106 @@ class VocabularyReviewRequest(BaseModel):
 class SeedResponse(BaseModel):
     added: int
     skipped: int
+
+
+# --- Phase 3: full mock sittings --------------------------------------
+
+class MockStartRequest(BaseModel):
+    track: str = Field(pattern="^(academic|general)$")
+
+
+class MockStartResponse(BaseModel):
+    mock_id: int
+    track: str
+    current_section: str
+    listening_test_id: str
+    reading_test_id: str
+    writing_task1_prompt_id: str
+    writing_task2_prompt_id: str
+    started_at: datetime
+    section_expires_at: datetime | None
+    band_label: str
+
+
+class MockSummary(BaseModel):
+    mock_id: int
+    track: str
+    status: str
+    current_section: str
+    overall_band: float | None
+    started_at: datetime
+
+
+class MockScoredSection(BaseModel):
+    status: str
+    score_raw: int | None
+    band_estimate: float | None
+
+
+class MockWritingSection(BaseModel):
+    status: str
+    band_low: float | None
+    band_high: float | None
+
+
+class MockSpeakingSection(BaseModel):
+    status: str
+    band_estimate: float | None
+
+
+class MockSections(BaseModel):
+    listening: MockScoredSection
+    reading: MockScoredSection
+    writing: MockWritingSection
+    speaking: MockSpeakingSection
+
+
+class MockDetailResponse(BaseModel):
+    mock_id: int
+    track: str
+    status: str
+    current_section: str
+    started_at: datetime
+    section_expires_at: datetime | None
+    sections: MockSections
+    overall_band: float | None
+    band_label: str
+
+
+class MockSubmitResponse(SubmitResponse):
+    next_section: str
+    section_expires_at: datetime | None
+
+
+class MockWritingSubmitRequest(BaseModel):
+    task1_text: str = Field(min_length=1, max_length=20000)
+    task2_text: str = Field(min_length=1, max_length=20000)
+    duration_seconds: int | None = Field(default=None, ge=0)
+
+
+class MockWritingTaskResult(BaseModel):
+    word_count: int
+    min_words: int
+    meets_minimum: bool
+    feedback: dict
+
+
+class MockWritingSubmitResponse(BaseModel):
+    task1: MockWritingTaskResult
+    task2: MockWritingTaskResult
+    writing_band_low: float
+    writing_band_high: float
+    next_section: str
+
+
+class MockSpeakingCompleteRequest(BaseModel):
+    set_id: str
+    duration_seconds: int | None = Field(default=None, ge=0)
+    band_low: float | None = Field(default=None, ge=0, le=9)
+    band_high: float | None = Field(default=None, ge=0, le=9)
+
+
+class MockSpeakingCompleteResponse(BaseModel):
+    overall_band: float | None
+    band_label: str
+    status: str

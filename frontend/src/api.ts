@@ -194,6 +194,123 @@ export interface VocabularyItem {
   created_at: string;
 }
 
+/* ------------------------------------------------------------------ */
+/* Full mocks (Phase 3): Listening → Reading → Writing → Speaking,    */
+/* in one sitting, in test order, no going back. Every band is a      */
+/* practice estimate, never an official score.                        */
+/* ------------------------------------------------------------------ */
+
+export type MockTrack = "academic" | "general";
+
+export type MockSectionKey =
+  | "listening"
+  | "reading"
+  | "writing"
+  | "speaking"
+  | "done";
+
+export interface MockStartResponse {
+  mock_id: number;
+  track: string;
+  current_section: string;
+  listening_test_id: string;
+  reading_test_id: string;
+  writing_task1_prompt_id: string;
+  writing_task2_prompt_id: string;
+  started_at: string;
+  section_expires_at: string | null;
+  band_label: string;
+}
+
+export interface MockSummary {
+  mock_id: number;
+  track: string;
+  status: string;
+  current_section: string;
+  overall_band: number | null;
+  started_at: string;
+}
+
+export interface MockScoredSection {
+  status: string;
+  score_raw: number | null;
+  band_estimate: number | null;
+}
+
+export interface MockWritingSection {
+  status: string;
+  band_low: number | null;
+  band_high: number | null;
+}
+
+export interface MockSpeakingSection {
+  status: string;
+  band_estimate: number | null;
+}
+
+export interface MockSections {
+  listening: MockScoredSection;
+  reading: MockScoredSection;
+  writing: MockWritingSection;
+  speaking: MockSpeakingSection;
+}
+
+export interface MockDetail {
+  mock_id: number;
+  track: string;
+  status: string;
+  current_section: string;
+  started_at: string;
+  section_expires_at: string | null;
+  sections: MockSections;
+  overall_band: number | null;
+  band_label: string;
+}
+
+export interface MockSubmitResult extends SubmitResult {
+  next_section: string;
+  section_expires_at: string | null;
+}
+
+export interface WritingFeedbackCriterion {
+  band_low: number;
+  band_high: number;
+  notes: string[];
+}
+
+export interface WritingFeedback {
+  prompt_id: string;
+  word_count: number;
+  min_words: number;
+  meets_minimum: boolean;
+  band_low: number;
+  band_high: number;
+  band_label: string;
+  criteria: Record<string, WritingFeedbackCriterion>;
+  limits: string;
+}
+
+export interface MockWritingTaskResult {
+  word_count: number;
+  min_words: number;
+  meets_minimum: boolean;
+  feedback: WritingFeedback;
+}
+
+export interface MockWritingSubmitResult {
+  task1: MockWritingTaskResult;
+  task2: MockWritingTaskResult;
+  writing_band_low: number;
+  writing_band_high: number;
+  next_section: string;
+}
+
+export interface MockSpeakingCompleteResult {
+  overall_band: number | null;
+  band_label: string;
+  status: string;
+}
+
 async function request<T>(
   path: string,
   options: RequestInit = {},
@@ -321,4 +438,64 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ set_id: setId, duration_seconds: durationSeconds }),
     }),
+  /* Full mocks (Phase 3) */
+  startMock: (track: MockTrack) =>
+    request<MockStartResponse>("/api/mock/start", {
+      method: "POST",
+      body: JSON.stringify({ track }),
+    }),
+  listMocks: () => request<MockSummary[]>("/api/mock"),
+  getMock: (mockId: number) => request<MockDetail>(`/api/mock/${mockId}`),
+  submitMockListening: (
+    mockId: number,
+    sessionId: string,
+    answers: Record<string, string | number>,
+  ) =>
+    request<MockSubmitResult>(`/api/mock/${mockId}/listening/submit`, {
+      method: "POST",
+      body: JSON.stringify({ session_id: sessionId, answers }),
+    }),
+  submitMockReading: (
+    mockId: number,
+    sessionId: string,
+    answers: Record<string, string | number>,
+  ) =>
+    request<MockSubmitResult>(`/api/mock/${mockId}/reading/submit`, {
+      method: "POST",
+      body: JSON.stringify({ session_id: sessionId, answers }),
+    }),
+  submitMockWriting: (
+    mockId: number,
+    task1Text: string,
+    task2Text: string,
+    durationSeconds: number,
+  ) =>
+    request<MockWritingSubmitResult>(`/api/mock/${mockId}/writing/submit`, {
+      method: "POST",
+      body: JSON.stringify({
+        task1_text: task1Text,
+        task2_text: task2Text,
+        duration_seconds: durationSeconds,
+      }),
+    }),
+  completeMockSpeaking: (
+    mockId: number,
+    setId: string,
+    durationSeconds: number,
+    bandLow?: number,
+    bandHigh?: number,
+  ) =>
+    request<MockSpeakingCompleteResult>(
+      `/api/mock/${mockId}/speaking/complete`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          set_id: setId,
+          duration_seconds: durationSeconds,
+          ...(bandLow !== undefined && bandHigh !== undefined
+            ? { band_low: bandLow, band_high: bandHigh }
+            : {}),
+        }),
+      },
+    ),
 };

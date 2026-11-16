@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import config
 from .database import init_db
-from .routers import attempts, auth, dashboard, modules, practice, resources, vocabulary
+from .routers import attempts, auth, dashboard, mock, modules, practice, resources, vocabulary
 
 
 @asynccontextmanager
@@ -30,7 +30,7 @@ app = FastAPI(
         "All practice content is original; band scores shown anywhere "
         "are practice estimates, not official scores."
     ),
-    version="0.2.0",
+    version="0.3.0",
     lifespan=lifespan,
 )
 
@@ -49,8 +49,9 @@ app.include_router(dashboard.router, prefix="/api")
 app.include_router(attempts.router, prefix="/api")
 app.include_router(vocabulary.router, prefix="/api")
 app.include_router(practice.router, prefix="/api")
+app.include_router(mock.router, prefix="/api")
 
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "app": "prepsathi", "version": "0.2.0"}
+    return {"status": "ok", "app": "prepsathi", "version": "0.3.0"}

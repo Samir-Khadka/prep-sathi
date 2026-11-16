@@ -1,3 +1,31 @@
+# Phase 3 — full mocks and feedback (v0.3.0), 16 Nov 2026
+- Full mock sittings in test order (Listening → Reading → Writing in
+  one timed session, no breaks, no going back to a closed section;
+  Speaking as a separate slot). Server-side section clocks (Listening
+  1920s, Reading 3600s, Writing 3600s); an expired section is marked
+  expired (score 0 / band 1.0) and the sitting continues. Overall band
+  = average of the four section bands, IELTS rounding, always labelled
+  "practice estimate, not an official score". Mock rotation gives each
+  sitting fresh material (1st: L1+RA1, 2nd: L2+RA2, 3rd: L3+RA3, then
+  wraps; GT uses RG1).
+- Writing feedback by the four official criteria (task achievement,
+  coherence and cohesion, lexical resource, grammatical range and
+  accuracy) with per-criterion notes and an estimated band RANGE —
+  guidance only, never an examiner's score. Calibrated so all 20 model
+  answers score 7.0–8.0 and a weak fixture scores 4.0–5.0; limits are
+  stated in every response (cannot judge ideas, argument quality, or
+  factual accuracy).
+- Speaking playback history: recordings saved on-device (IndexedDB,
+  max 20), with playback, delete, and fluency signals (pace, pauses)
+  giving an estimated range only. Nothing is uploaded, ever.
+- Resources hub verified live (16 Nov): one link replaced — the
+  British Council entry now points at the real familiarisation test
+  instead of the generic UK preparation hub.
+- New content (all original): Listening test L3 + Academic Reading
+  test RA3 (3 Listening, 3 Academic + 1 GT Reading now).
+- Backend 172 tests green; frontend typecheck + build green; full
+  mock end-to-end smoke test passed (signup → mock → overall band).
+
 # Phase 2 — MVP (v0.2.0), 16 Nov 2026
 - Listening + Reading timed section tests with automatic scoring and
   estimated bands (published conversion tables, Academic and GT Reading

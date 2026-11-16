@@ -16,6 +16,11 @@ from sqlalchemy.orm import Session
 from ..content import ContentStore
 from ..database import get_db
 from ..deps import get_current_user
+from ..feedback import (
+    WritingFeedbackRequest,
+    WritingFeedbackResponse,
+    analyse_writing,
+)
 from ..models import Attempt, TestSession, User
 from ..scoring import (
     BAND_LABEL,
@@ -395,6 +400,25 @@ def submit_writing(
         meets_minimum=meets_minimum,
         attempt_id=attempt.id,
     )
+
+
+@router.post("/writing/feedback", response_model=WritingFeedbackResponse)
+def writing_feedback(
+    payload: WritingFeedbackRequest,
+    current_user: User = Depends(get_current_user),
+) -> dict:
+    """Automated Writing feedback: a band range per criterion plus notes.
+
+    Guidance only — the response always carries the practice-estimate
+    label and the limits statement. No attempt is recorded here; use
+    POST /writing/submit to save a practice attempt.
+    """
+    prompt = CONTENT.writing(payload.prompt_id)
+    if prompt is None:
+        raise HTTPException(status_code=404, detail="Writing prompt not found")
+    if not payload.text.strip():
+        raise HTTPException(status_code=400, detail="Text must not be empty")
+    return analyse_writing(prompt, payload.text)
 
 
 # -- Speaking ----------------------------------------------------------

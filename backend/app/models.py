@@ -61,6 +61,9 @@ class User(Base):
     vocabulary: Mapped[list["VocabularyItem"]] = relationship(
         "VocabularyItem", back_populates="user", cascade="all, delete-orphan"
     )
+    mock_sessions: Mapped[list["MockSession"]] = relationship(
+        "MockSession", back_populates="user", cascade="all, delete-orphan"
+    )
 
 
 class Attempt(Base):
@@ -105,6 +108,64 @@ class TestSession(Base):
     submitted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
     user: Mapped["User"] = relationship("User", back_populates="test_sessions")
+
+
+class MockSession(Base):
+    """One full mock sitting: Listening → Reading → Writing → Speaking,
+    in test order, with a server-side clock per section.
+
+    Section results live in columns (a band of 1.0 with the matching
+    ``*_expired`` flag means the section expired unanswered). A band is
+    always a practice estimate, never an official score.
+    """
+
+    __tablename__ = "mock_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"), nullable=False, index=True
+    )
+    track: Mapped[str] = mapped_column(String(20), nullable=False)
+    listening_test_id: Mapped[str] = mapped_column(String(20), nullable=False)
+    reading_test_id: Mapped[str] = mapped_column(String(20), nullable=False)
+    writing_task1_prompt_id: Mapped[str] = mapped_column(String(20), nullable=False)
+    writing_task2_prompt_id: Mapped[str] = mapped_column(String(20), nullable=False)
+    current_section: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="listening"
+    )
+    started_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=_now, nullable=False
+    )
+    section_started_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=_now, nullable=False
+    )
+    section_expires_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    listening_score_raw: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    listening_band: Mapped[float | None] = mapped_column(Float, nullable=True)
+    listening_expired: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    reading_score_raw: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    reading_band: Mapped[float | None] = mapped_column(Float, nullable=True)
+    reading_expired: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    writing_band_low: Mapped[float | None] = mapped_column(Float, nullable=True)
+    writing_band_high: Mapped[float | None] = mapped_column(Float, nullable=True)
+    writing_expired: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False
+    )
+    speaking_band: Mapped[float | None] = mapped_column(Float, nullable=True)
+    status: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="in_progress"
+    )
+    completed_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+
+    user: Mapped["User"] = relationship("User", back_populates="mock_sessions")
 
 
 class VocabularyItem(Base):

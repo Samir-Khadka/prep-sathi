@@ -76,3 +76,45 @@
 16. **Answers never leave the server before a submit.** Public test
     views strip answers, explanations and evidence; the review after
     submit is the only place they appear.
+
+## Phase 3 (16 Nov 2026)
+
+17. **A mock is one sitting, in test order, with no going back.**
+    Listening → Reading → Writing run back-to-back with server-side
+    clocks; submitting a closed section returns 400. An expired
+    section is marked expired (score 0 / band 1.0) and the sitting
+    continues — a missed section never blocks the rest of the mock.
+18. **Overall band needs all four sections.** Writing contributes the
+    midpoint of its feedback range; Speaking contributes the midpoint
+    of the on-device fluency range (if the learner completes Speaking
+    without a range, the overall stays null until a ranged completion
+    is recorded). If Writing expires, the sitting can never complete
+    with an overall band — stated in the code and covered by a test.
+19. **Writing feedback is heuristic and says so.** It counts
+    measurable patterns (word count, paragraph structure, linking
+    words, lexical variety, sentence variety) and cannot judge ideas,
+    argument quality, or factual accuracy. Every response carries a
+    `limits` field and the practice-estimate label. No article /
+    spelling / punctuation detection is attempted.
+20. **Speaking recordings never leave the device.** History lives in
+    IndexedDB (max 20 recordings, oldest dropped), playback and
+    delete are local, and no audio is sent in any API call. Fluency
+    signals are timing only (speech seconds, pause count, longest
+    pause) and give a band RANGE, never a precise score.
+21. **Mock rotation is per user, per track.** 1st mock: L1+RA1 (or
+    L1+RG1 for GT), 2nd: L2+RA2, 3rd: L3+RA3, then wraps; Writing
+    prompts rotate in definition order. A learner's second mock uses
+    fresh material.
+22. **Resources hub links are verified live.** 16 Nov 2026: four of
+    five links confirmed; the British Council familiarisation entry
+    was repointed from the generic UK preparation hub to the actual
+    familiarisation test page.
+23. **Mock speaking reuses the speaking-history fluency module.**
+    The mock runner mirrors the PracticeSpeaking recording flow
+    rather than embedding that page (it is a full page with its own
+    practice completion call). Fluency ranges flow from the saved
+    recording into the mock's speaking completion.
+24. **Feedback is imported lazily in the mock router.** The mock
+    writing endpoint imports `analyse_writing` inside the handler
+    (503 if absent) so the app stays bootable if the feedback module
+    is ever missing; in the shipped tree it is always present.
