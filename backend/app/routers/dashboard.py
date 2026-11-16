@@ -14,6 +14,8 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..deps import get_current_user
 from ..models import Attempt, User, VocabularyItem
+from ..routers.attempts import _out as _attempt_out
+from ..routers.practice import latest_bands, overall_estimate
 from ..schemas import DashboardOut
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
@@ -51,6 +53,13 @@ def dashboard(
         .scalar()
         or 0
     )
+    recent_rows = (
+        db.query(Attempt)
+        .filter(Attempt.user_id == current_user.id)
+        .order_by(Attempt.created_at.desc())
+        .limit(10)
+        .all()
+    )
     return DashboardOut(
         attempts_total=attempts_total,
         attempts_by_module={module: count for module, count in by_module_rows},
@@ -58,4 +67,7 @@ def dashboard(
         vocabulary_due=vocabulary_due,
         target_band_overall=current_user.target_band_overall,
         target_band_writing=current_user.target_band_writing,
+        latest_band_by_module=latest_bands(db, current_user.id),
+        overall_estimate=overall_estimate(db, current_user.id),
+        attempts_recent=[_attempt_out(row) for row in recent_rows],
     )

@@ -3,11 +3,18 @@ import { HashRouter, Link, Route, Routes, useNavigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./auth";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
+import ListeningTestPage from "./pages/ListeningTest";
 import Login from "./pages/Login";
 import ModulePage from "./pages/ModulePage";
+import PracticeListening from "./pages/PracticeListening";
+import PracticeReading from "./pages/PracticeReading";
+import PracticeSpeaking from "./pages/PracticeSpeaking";
+import PracticeWriting from "./pages/PracticeWriting";
+import ReadingTestPage from "./pages/ReadingTest";
 import Resources from "./pages/Resources";
 import Signup from "./pages/Signup";
 import Vocabulary from "./pages/Vocabulary";
+import VocabularyReview from "./pages/VocabularyReview";
 import "./styles.css";
 
 function Nav() {
@@ -82,6 +89,19 @@ export default function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/vocabulary" element={<Vocabulary />} />
+            <Route path="/vocabulary/review" element={<VocabularyReview />} />
+            <Route path="/practice/listening" element={<PracticeListening />} />
+            <Route
+              path="/practice/listening/:id"
+              element={<ListeningTestPage />}
+            />
+            <Route path="/practice/reading" element={<PracticeReading />} />
+            <Route
+              path="/practice/reading/:id"
+              element={<ReadingTestPage />}
+            />
+            <Route path="/practice/writing" element={<PracticeWriting />} />
+            <Route path="/practice/speaking" element={<PracticeSpeaking />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/module/:slug" element={<ModulePage />} />
           </Routes>

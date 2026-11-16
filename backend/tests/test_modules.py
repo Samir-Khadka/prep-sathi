@@ -19,7 +19,7 @@ def test_modules_lists_all_four() -> None:
         assert item["time_minutes"]
         assert item["questions"]
         assert item["description"]
-        assert "Phase 2" in item["status"]
+        assert "Practice available" in item["status"]
 
 
 def test_module_detail() -> None:

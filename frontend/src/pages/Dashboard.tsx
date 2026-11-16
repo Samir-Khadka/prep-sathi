@@ -64,7 +64,7 @@ export default function DashboardPage() {
           </div>
           <h2>Attempts by module</h2>
           {Object.keys(data.attempts_by_module).length === 0 ? (
-            <p>No attempts yet. Practice content arrives in Phase 2.</p>
+            <p>No attempts yet. Start with a practice test below.</p>
           ) : (
             <ul className="clean">
               {Object.entries(data.attempts_by_module).map(
@@ -78,7 +78,79 @@ export default function DashboardPage() {
             </ul>
           )}
           <p>
-            <Link to="/vocabulary">Review your vocabulary →</Link>
+            <Link to="/practice/listening">Listening practice →</Link> ·{" "}
+            <Link to="/practice/reading">Reading practice →</Link> ·{" "}
+            <Link to="/practice/writing">Writing practice →</Link> ·{" "}
+            <Link to="/practice/speaking">Speaking practice →</Link>
+          </p>
+        </section>
+      )}
+
+      {data && data.latest_band_by_module && (
+        <section className="card">
+          <h2>Latest band by module</h2>
+          <p className="honesty">
+            Every band below is a practice estimate, not an official score.
+          </p>
+          <div className="stat-row">
+            {["listening", "reading", "writing", "speaking"].map((m) => (
+              <div className="stat" key={m}>
+                <div className="num">
+                  {data.latest_band_by_module?.[m] != null
+                    ? `Band ${Number(data.latest_band_by_module[m]).toFixed(1)}`
+                    : "—"}
+                </div>
+                <div className="lbl">{m}</div>
+              </div>
+            ))}
+          </div>
+          <p>
+            <strong>Overall estimate: </strong>
+            {data.overall_estimate != null
+              ? `Band ${data.overall_estimate.toFixed(1)}`
+              : "— (complete all four modules for an overall estimate)"}
+            {data.target_band_overall != null && (
+              <>
+                {" "}
+                vs your target of band {data.target_band_overall}
+              </>
+            )}
+            . <span className="band-label">practice estimate, not an official score</span>
+          </p>
+        </section>
+      )}
+
+      {data && data.attempts_recent && data.attempts_recent.length > 0 && (
+        <section className="card">
+          <h2>Recent attempts</h2>
+          <table className="attempts">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Kind</th>
+                <th>Raw</th>
+                <th>Band</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.attempts_recent.map((a) => (
+                <tr key={a.id}>
+                  <td>{a.module}</td>
+                  <td>{a.kind}</td>
+                  <td>{a.score_raw ?? "—"}</td>
+                  <td>
+                    {a.band_estimate != null
+                      ? `Band ${a.band_estimate.toFixed(1)}`
+                      : "—"}
+                  </td>
+                  <td>{new Date(a.created_at).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="honesty">
+            Bands are practice estimates, not official scores.
           </p>
         </section>
       )}

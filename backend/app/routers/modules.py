@@ -1,7 +1,9 @@
 """Module catalogue: the four IELTS modules with their real format.
 
-Phase 1 ships the format information and empty practice screens only.
-Practice content (original tests, prompts, cue cards) arrives in Phase 2.
+Phase 2 ships original practice content for all four modules: timed
+Listening and Reading tests with automatic scoring, Writing prompts with
+model answers, Speaking sets with on-device recording, and vocabulary
+review.
 """
 from __future__ import annotations
 
@@ -23,8 +25,9 @@ MODULES: dict[str, dict] = {
             "matching, map and diagram labelling, and form, note, table "
             "and sentence completion."
         ),
-        "status": "Practice content arrives in Phase 2 — original recordings "
-        "and questions written to this exact format.",
+        "status": "Practice available — 2 timed tests with automatic "
+        "scoring and band estimates. Audio is pending real recordings; "
+        "transcripts are shown instead.",
     },
     "reading": {
         "name": "Reading",
@@ -37,8 +40,8 @@ MODULES: dict[str, dict] = {
             "academic texts; General Training uses everyday and workplace "
             "texts."
         ),
-        "status": "Practice content arrives in Phase 2 — original passages "
-        "with evidence-linked explanations for every answer.",
+        "status": "Practice available — Academic and General Training "
+        "tests with automatic scoring and evidence-linked explanations.",
     },
     "writing": {
         "name": "Writing",
@@ -52,8 +55,9 @@ MODULES: dict[str, dict] = {
             "Judged on task achievement, coherence and cohesion, lexical "
             "resource, and grammatical range and accuracy."
         ),
-        "status": "Practice content arrives in Phase 2 — original prompts "
-        "with model answers and feedback by the four official criteria.",
+        "status": "Practice available — original prompts with model "
+        "answers and timed writing sessions. Automated feedback arrives "
+        "in Phase 3.",
     },
     "speaking": {
         "name": "Speaking",
@@ -66,8 +70,9 @@ MODULES: dict[str, dict] = {
             "lexical resource, grammatical range and accuracy, and "
             "pronunciation."
         ),
-        "status": "Practice content arrives in Phase 2 — topic sets, cue "
-        "cards, and on-device recording with playback.",
+        "status": "Practice available — topic sets, cue cards, and "
+        "on-device recording with playback. Automated feedback arrives "
+        "in Phase 3.",
     },
 }
 

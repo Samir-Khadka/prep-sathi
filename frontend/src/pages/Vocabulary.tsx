@@ -10,6 +10,8 @@ export default function Vocabulary() {
   const [meaning, setMeaning] = useState("");
   const [topic, setTopic] = useState("general");
   const [error, setError] = useState("");
+  const [seedMsg, setSeedMsg] = useState("");
+  const [seeding, setSeeding] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -48,6 +50,22 @@ export default function Vocabulary() {
     }
   }
 
+  async function seed() {
+    setSeeding(true);
+    setSeedMsg("");
+    try {
+      const res = await api.seedVocabulary();
+      setSeedMsg(
+        `Added ${res.added} words from the starter deck (${res.skipped} already in your list).`,
+      );
+      setWords(await api.vocabulary());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load the starter deck.");
+    } finally {
+      setSeeding(false);
+    }
+  }
+
   async function remove(id: number) {
     await api.deleteWord(id);
     setWords(words.filter((w) => w.id !== id));
@@ -59,9 +77,18 @@ export default function Vocabulary() {
         <h1>Vocabulary</h1>
         <p>
           Words harvested from your own reading and listening mistakes —
-          reviewed with spaced repetition. Phase 2 adds the review
-          schedule; for now, your list is saved and waiting.
+          reviewed with spaced repetition. Load the 200-word starter deck
+          to begin, or add your own words below.
         </p>
+        <p>
+          <button type="button" onClick={() => void seed()} disabled={seeding}>
+            {seeding ? "Loading…" : "Load starter deck"}
+          </button>{" "}
+          <Link className="btn secondary" to="/vocabulary/review">
+            Review due words
+          </Link>
+        </p>
+        {seedMsg && <p className="notice">{seedMsg}</p>}
         <form onSubmit={add}>
           <label htmlFor="word">Word</label>
           <input

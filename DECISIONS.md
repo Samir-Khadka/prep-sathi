@@ -47,3 +47,32 @@
 10. **Band estimates are always labelled.** Any band_estimate the API
     returns carries `band_label: "practice estimate, not an official
     score"`, and the UI repeats the label in the footer.
+
+## Phase 2 (16 Nov 2026)
+
+11. **Listening audio is pending real recordings.** No TTS tool exists
+    in the sandbox (no espeak/festival; Google TTS via gTTS is
+    rate-limited — 429 — from the shared egress IP, tried twice on two
+    domains). Listening tests ship with full transcripts and a clear
+    `audio_note`; the UI shows the transcript and says audio is coming.
+    Samir records the 8 parts with a real voice (or volunteers do).
+    Never ship fake or synthesised-placeholder audio files.
+12. **Timed mode is enforced server-side.** A `TestSession` row is
+    created on start; a timed submit past `started_at + limit + 60s
+    grace` is refused with 400 and records no attempt. Practice mode
+    has no limit. (Found during the build: SQLite returns naive
+    datetimes, so the check coerces naive to UTC.)
+13. **Band tables are the published approximations.** Listening,
+    Academic Reading and GT Reading each have their own table (GT needs
+    ~4–5 more correct answers per band); raw 0–2 maps to band 1.0
+    (band 0 means "did not attempt"). Every band is labelled an
+    estimate.
+14. **Vocabulary items carry an `example` sentence.** The starter deck
+    ships examples, so the model gained an `example` column (Phase 1
+    dev databases predate it — delete `prepsathi.db` to recreate).
+15. **Writing duration is the whole 60-minute session.** Both tasks
+    are submitted with the session elapsed time; per-task splits are
+    not tracked.
+16. **Answers never leave the server before a submit.** Public test
+    views strip answers, explanations and evidence; the review after
+    submit is the only place they appear.

@@ -18,6 +18,14 @@ export default function ModulePage() {
   if (error) return <p className="error">{error}</p>;
   if (!module) return <p>Loading…</p>;
 
+  const practiceLinks: Record<string, { to: string; label: string }> = {
+    listening: { to: "/practice/listening", label: "Listening practice" },
+    reading: { to: "/practice/reading", label: "Reading practice" },
+    writing: { to: "/practice/writing", label: "Writing practice" },
+    speaking: { to: "/practice/speaking", label: "Speaking practice" },
+  };
+  const practice = slug ? practiceLinks[slug] : undefined;
+
   return (
     <section className="card">
       <p>
@@ -26,9 +34,13 @@ export default function ModulePage() {
       </p>
       <h1>{module.name}</h1>
       <p>{module.description}</p>
-      <div className="notice">
-        <strong>Coming in Phase 2.</strong> {module.status}
-      </div>
+      {practice && (
+        <p>
+          <Link className="btn" to={practice.to}>
+            Start {practice.label} →
+          </Link>
+        </p>
+      )}
       <p>
         Meanwhile, the official free material is the best place to see the
         real format:{" "}

@@ -270,3 +270,133 @@ ul.clean li {
 ul.clean li:last-child {
   border-bottom: none;
 }
+
+/* Phase 2 practice pages */
+
+.timer {
+  background: #f6efdc;
+  border: 1px solid #e3d3a4;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1.1rem;
+}
+
+.band-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  margin: 0;
+  cursor: pointer;
+}
+
+.option input {
+  width: auto;
+}
+
+ol.questions {
+  padding-left: 20px;
+}
+
+li.question {
+  margin-bottom: 18px;
+}
+
+li.question input[type="text"] {
+  max-width: 420px;
+}
+
+.transcript {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0;
+}
+
+.transcript summary {
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.passage {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+
+.cue-card {
+  background: var(--bg);
+  border: 1px solid #e3d3a4;
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+
+.result-correct {
+  border-left: 4px solid #2e7d32;
+  padding-left: 12px;
+}
+
+.result-wrong {
+  border-left: 4px solid var(--gold);
+  padding-left: 12px;
+}
+
+.evidence {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.writing-box {
+  width: 100%;
+  min-height: 260px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.55;
+  background: #fff;
+  color: var(--ink);
+}
+
+.wordcount {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+table.attempts {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+table.attempts th,
+table.attempts td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+table.attempts th {
+  color: var(--muted);
+  font-size: 0.9rem;
+}

@@ -84,6 +84,7 @@ class VocabularyOut(BaseModel):
     id: int
     word: str
     meaning: str
+    example: str
     topic: str
     interval_days: int
     next_review: datetime
@@ -99,3 +100,171 @@ class DashboardOut(BaseModel):
     vocabulary_due: int
     target_band_overall: float | None
     target_band_writing: float | None
+    latest_band_by_module: dict[str, float | None]
+    overall_estimate: float | None
+    attempts_recent: list[AttemptOut]
+
+
+# --- Phase 2: practice -------------------------------------------------
+
+class TestPartSummary(BaseModel):
+    part: int
+    title: str
+    question_count: int
+    has_audio: bool
+
+
+class ListeningTestSummary(BaseModel):
+    id: str
+    title: str
+    parts: list[TestPartSummary]
+    total_questions: int
+    time_limit_seconds: int
+
+
+class ListeningQuestionPublic(BaseModel):
+    no: int
+    type: str
+    prompt: str
+    options: list[str] | None = None
+
+
+class ListeningPartPublic(BaseModel):
+    part: int
+    title: str
+    setting: str
+    transcript: str
+    audio_url: str | None = None
+    audio_note: str
+    questions: list[ListeningQuestionPublic]
+
+
+class ListeningTestPublic(BaseModel):
+    id: str
+    title: str
+    parts: list[ListeningPartPublic]
+
+
+class ReadingTestSummary(BaseModel):
+    id: str
+    track: str
+    title: str
+    total_questions: int
+    time_limit_seconds: int
+
+
+class ReadingQuestionPublic(BaseModel):
+    no: int
+    type: str
+    prompt: str
+    options: list[str] | None = None
+
+
+class ReadingPassagePublic(BaseModel):
+    section: int
+    title: str
+    text: str
+    questions: list[ReadingQuestionPublic]
+
+
+class ReadingTestPublic(BaseModel):
+    id: str
+    track: str
+    title: str
+    passages: list[ReadingPassagePublic]
+
+
+class StartRequest(BaseModel):
+    mode: str = Field(default="practice", pattern="^(timed|practice)$")
+
+
+class StartResponse(BaseModel):
+    session_id: int
+    started_at: datetime
+    time_limit_seconds: int | None
+    expires_at: datetime | None
+
+
+class SubmitRequest(BaseModel):
+    session_id: int
+    answers: dict[str, str | int]
+
+
+class QuestionResult(BaseModel):
+    no: int
+    correct: bool
+    your_answer: str | int | None
+    correct_answer: str | int
+    explanation: str
+    evidence: str
+
+
+class SubmitResponse(BaseModel):
+    score_raw: int
+    band_estimate: float
+    band_label: str
+    duration_seconds: int
+    overtime: bool
+    results: list[QuestionResult]
+
+
+class WritingPromptSummary(BaseModel):
+    id: str
+    track: str
+    task: int
+    title: str
+    prompt: str
+    min_words: int
+    suggested_minutes: int
+
+
+class WritingPromptFull(WritingPromptSummary):
+    model_answer: str
+    commentary: str
+
+
+class WritingSubmitRequest(BaseModel):
+    prompt_id: str
+    text: str = Field(min_length=1, max_length=20000)
+    duration_seconds: int | None = Field(default=None, ge=0)
+
+
+class WritingSubmitResponse(BaseModel):
+    word_count: int
+    min_words: int
+    meets_minimum: bool
+    attempt_id: int
+
+
+class SpeakingPart2(BaseModel):
+    cue: str
+    points: list[str]
+    prep_seconds: int
+    talk_seconds: int
+
+
+class SpeakingSet(BaseModel):
+    id: str
+    topic: str
+    part1: list[str]
+    part2: SpeakingPart2
+    part3: list[str]
+    sample_answer: str
+
+
+class SpeakingCompleteRequest(BaseModel):
+    set_id: str
+    duration_seconds: int | None = Field(default=None, ge=0)
+
+
+class SpeakingCompleteResponse(BaseModel):
+    attempt_id: int
+
+
+class VocabularyReviewRequest(BaseModel):
+    correct: bool
+
+
+class SeedResponse(BaseModel):
+    added: int
+    skipped: int

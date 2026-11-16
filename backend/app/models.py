@@ -4,6 +4,8 @@
 - Attempt: one practice or mock attempt. Phase 1 only records attempts;
   scoring and band estimates arrive in Phase 2. A band_estimate, when
   present, is ALWAYS a practice estimate, never an official score.
+- TestSession: one started Listening/Reading sitting; timed mode is
+  enforced server-side from started_at + time_limit.
 - VocabularyItem: one flashcard with spaced-repetition fields.
 """
 from __future__ import annotations
@@ -11,6 +13,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 from sqlalchemy import (
+    Boolean,
     DateTime,
     Float,
     ForeignKey,
@@ -52,6 +55,9 @@ class User(Base):
     attempts: Mapped[list["Attempt"]] = relationship(
         "Attempt", back_populates="user", cascade="all, delete-orphan"
     )
+    test_sessions: Mapped[list["TestSession"]] = relationship(
+        "TestSession", back_populates="user", cascade="all, delete-orphan"
+    )
     vocabulary: Mapped[list["VocabularyItem"]] = relationship(
         "VocabularyItem", back_populates="user", cascade="all, delete-orphan"
     )
@@ -76,6 +82,31 @@ class Attempt(Base):
     user: Mapped["User"] = relationship("User", back_populates="attempts")
 
 
+class TestSession(Base):
+    """One started Listening/Reading test sitting.
+
+    Timed mode is enforced server-side: a timed submit is refused once
+    the session's started_at + time_limit + grace has passed.
+    """
+
+    __tablename__ = "test_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"), nullable=False, index=True
+    )
+    module: Mapped[str] = mapped_column(String(20), nullable=False)
+    test_id: Mapped[str] = mapped_column(String(20), nullable=False)
+    mode: Mapped[str] = mapped_column(String(20), nullable=False, default="practice")
+    started_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=_now, nullable=False
+    )
+    time_limit_seconds: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    submitted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+
+    user: Mapped["User"] = relationship("User", back_populates="test_sessions")
+
+
 class VocabularyItem(Base):
     __tablename__ = "vocabulary"
 
@@ -85,6 +116,7 @@ class VocabularyItem(Base):
     )
     word: Mapped[str] = mapped_column(String(120), nullable=False)
     meaning: Mapped[str] = mapped_column(Text, nullable=False, default="")
+    example: Mapped[str] = mapped_column(Text, nullable=False, default="")
     topic: Mapped[str] = mapped_column(String(80), nullable=False, default="general")
     interval_days: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     next_review: Mapped[datetime] = mapped_column(

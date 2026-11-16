@@ -3,13 +3,15 @@
 Free IELTS-format practice for Nepali phone-first learners — original
 practice material, honest band estimates.
 
-**Status: Phase 1 skeleton (v0.1.0).** The repo, PWA shell, auth,
-database models, empty module screens, progress dashboard and official
-resources hub are in place. Practice content (original Listening
-recordings, Reading passages, Writing prompts, Speaking cue cards)
-arrives in Phase 2. Nothing here is copied from Cambridge books or any
-published test — all practice material is original and written to the
-official IELTS format.
+**Status: Phase 2 MVP (v0.2.0).** Listening and Reading timed tests
+with automatic scoring and band estimates, Writing guided practice with
+model answers, Speaking sets with on-device recording, vocabulary
+flashcards with spaced-repetition review and a 200-word starter deck,
+and a progress dashboard with section trends and target-band tracking.
+Nothing here is copied from Cambridge books or any published test —
+all practice material is original and written to the official IELTS
+format. Listening audio is pending real recordings (no TTS was
+available); transcripts are shown instead.
 
 ## What it is
 
@@ -82,4 +84,5 @@ antique gold. No black backgrounds.
 ## Decisions left for Samir (see DECISIONS.md)
 
 Product name (PrepSathi is the working name), HashRouter vs
-BrowserRouter, Neon provisioning, and the Phase 2 content sprint order.
+BrowserRouter, Neon provisioning, Listening audio recordings, Google
+sign-in, and the vocabulary review schedule.
