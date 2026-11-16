@@ -1,0 +1,272 @@
+/* PrepSathi — light premium palette (Samir's rule: no black backgrounds).
+   Warm ivory #FAF6ED, royal violet #5B3EA8, antique gold #B08D2E. */
+
+:root {
+  --bg: #faf6ed;
+  --surface: #fffdf8;
+  --ink: #2b2440;
+  --muted: #6e6587;
+  --primary: #5b3ea8;
+  --primary-dark: #4a3189;
+  --gold: #b08d2e;
+  --line: #e8e0d0;
+  --danger: #b3261e;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px 64px;
+}
+
+header.site {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header.site .bar {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.brand small {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-left: 6px;
+}
+
+nav.main {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: auto;
+  align-items: center;
+}
+
+nav.main a {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+nav.main a:hover {
+  color: var(--primary);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.hero {
+  padding: 32px 0 8px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.hero p.lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.module-card h3 {
+  margin: 0 0 4px;
+}
+
+.module-card .meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
+
+.badge {
+  display: inline-block;
+  background: #efe9f7;
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.badge.gold {
+  background: #f6efdc;
+  color: var(--gold);
+}
+
+button,
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--ink);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 12px 0 4px;
+}
+
+.form {
+  max-width: 440px;
+}
+
+.error {
+  background: #fdecea;
+  color: var(--danger);
+  border: 1px solid #f5c6c2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 12px;
+}
+
+.notice {
+  background: #f6efdc;
+  border: 1px solid #e3d3a4;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 16px;
+}
+
+.honesty {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+footer.site {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 24px 16px 40px;
+}
+
+.stat-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  flex: 1;
+  min-width: 140px;
+}
+
+.stat .num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat .lbl {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+ul.clean {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.clean li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+ul.clean li:last-child {
+  border-bottom: none;
+}

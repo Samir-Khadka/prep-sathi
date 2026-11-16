@@ -1,0 +1,27 @@
+# PrepSathi free-tier deploy (Render Blueprint).
+# Apply from the Render dashboard after the repo exists.
+# NOTE (Nov 2026): Render free web services are suspended until 1 Dec
+# (750 free instance hours exhausted). The backend service will not run
+# until then; the static frontend is unaffected.
+services:
+  - type: web
+    name: prepsathi-api
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    rootDir: .
+    envVars:
+      - key: DATABASE_URL
+        sync: false # set to a free Neon Postgres URL in the dashboard
+      - key: PREPSATHI_JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://prepsathi.onrender.com
+  - type: static
+    name: prepsathi
+    buildCommand: cd frontend && npm ci --ignore-scripts && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://prepsathi-api.onrender.com

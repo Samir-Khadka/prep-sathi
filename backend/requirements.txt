@@ -1,0 +1,9 @@
+fastapi==0.163.1
+uvicorn[standard]==0.34.0
+sqlalchemy==2.1.8
+PyJWT==2.10.1
+email-validator==2.2.0
+httpx==0.28.1
+# Postgres driver (Neon free tier). Only needed when DATABASE_URL points
+# at Postgres; local development uses SQLite and never imports this.
+psycopg[binary]==3.2.4
