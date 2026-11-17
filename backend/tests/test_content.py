@@ -41,7 +41,12 @@ def test_listening_counts() -> None:
         questions = [q for part in test["parts"] for q in part["questions"]]
         assert len(questions) == 40
         assert [q["no"] for q in questions] == list(range(1, 41))
-        assert all(part["audio_url"] is None for part in test["parts"])
+        assert all(
+            part["audio_url"] is None
+            or part["audio_url"]
+            == f"/static/audio/listening/{test['id']}/part{part['part']}.mp3"
+            for part in test["parts"]
+        )
         assert all(part["audio_note"].strip() for part in test["parts"])
 
 

@@ -9,11 +9,18 @@ serving a broken test.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 CONTENT_DIR = Path(__file__).resolve().parent / "content"
 
 _VALID_TFNG = {"TRUE", "FALSE", "NOT GIVEN"}
+
+# Phase 5.2: a Listening part may have no recording yet (null) or a
+# real recording served from /static/audio/listening/<TEST>/part<N>.mp3.
+# The URL must name the test and part it belongs to — a mismatched URL
+# is a content error, not a silent wrong-audio bug.
+_AUDIO_URL_RE = re.compile(r"^/static/audio/listening/(L[1-8])/part([1-4])\.mp3$")
 
 
 def _require(cond: bool, message: str) -> None:
@@ -67,6 +74,17 @@ def _check_numbering(questions: list[dict], where: str) -> None:
     )
 
 
+def _valid_audio_url(value: object, test_id: object, part_no: int) -> bool:
+    """Null means "no recording yet"; a string must be the exact
+    /static/audio/listening/<TEST>/part<N>.mp3 path for this test/part."""
+    if value is None:
+        return True
+    if not isinstance(value, str):
+        return False
+    match = _AUDIO_URL_RE.match(value)
+    return bool(match and match.group(1) == test_id and int(match.group(2)) == part_no)
+
+
 def _validate_listening(test: dict) -> None:
     where = f"listening {test.get('id')}"
     parts = test.get("parts")
@@ -78,7 +96,10 @@ def _validate_listening(test: dict) -> None:
         _non_empty(part.get("title"), pwhere)
         _non_empty(part.get("setting"), pwhere)
         _non_empty(part.get("transcript"), pwhere)
-        _require(part.get("audio_url") is None, f"{pwhere}: audio_url must be null in Phase 2")
+        _require(part.get("audio_url") is None or _valid_audio_url(
+            part.get("audio_url"), test.get("id"), i),
+            f"{pwhere}: audio_url must be null or "
+            f"/static/audio/listening/<test>/part<1-4>.mp3 for this test/part")
         _non_empty(part.get("audio_note"), pwhere)
         questions = part.get("questions")
         _require(isinstance(questions, list) and len(questions) == 10,
@@ -162,6 +183,10 @@ class ContentStore:
     """All Phase 2 practice content, loaded and validated once."""
 
     def __init__(self, directory: Path = CONTENT_DIR) -> None:
+        self._directory = directory
+        self._load_all(directory)
+
+    def _load_all(self, directory: Path) -> None:
         self.listening_tests = self._load(directory / "listening_tests.json", "tests")
         for test in self.listening_tests:
             _validate_listening(test)
@@ -176,6 +201,16 @@ class ContentStore:
             _validate_speaking(entry)
         self.vocabulary_deck = self._load(directory / "vocabulary_deck.json", "words")
         _validate_vocabulary(self.vocabulary_deck)
+
+    def reload(self) -> None:
+        """Re-read every content file from disk and re-validate.
+
+        Used after an admin audio upload changes listening_tests.json,
+        so the new audio_url is served without a restart. Raises
+        ValueError if the reloaded content is invalid — the caller
+        should only call this after validating the change itself.
+        """
+        self._load_all(self._directory)
 
     @staticmethod
     def _load(path: Path, key: str) -> list:

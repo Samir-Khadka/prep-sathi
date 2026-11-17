@@ -1,3 +1,34 @@
+# Phase 5.2 — Listening audio pipeline (web), 17 Nov 2026
+- Audio serving: `GET /static/audio/listening/<TEST>/part<N>.mp3` with
+  `audio/mpeg`, `Accept-Ranges: bytes`, and explicit Range support
+  (206 + Content-Range; 416 for unsatisfiable ranges; 400 for bad
+  test/part ids including traversal; 404 until a part is recorded).
+  No audio files ship yet — none exist, and none are synthesised.
+- Admin upload: `POST /api/audio/listening/<TEST>/part<N>` (admin-only
+  via the existing `get_admin_user`): multipart MP3, content-type +
+  magic-byte validation, 20 MB cap. On success it writes the file and
+  flips that part's `audio_url` in `listening_tests.json`, and the lazy
+  ContentStores reload so the new audio plays without a restart.
+- Content rule: `audio_url` may now be null or the exact
+  `/static/audio/listening/L<1-8>/part<1-4>.mp3` path for its own test
+  and part — a mismatched URL fails validation loudly.
+- Frontend player (`ListeningPlayer`): play/pause, seek slider with
+  current/total time, "Now playing: Part N"; starting one part pauses
+  any other. A load error falls back to the audio note + transcript,
+  never a broken player. Relative audio URLs resolve against the API
+  base URL.
+- Offline audio cache (`audioCache.ts`, `prepsathi-audio-v1`): full 200
+  responses are cached in Cache Storage and served as object URLs;
+  any failure streams the original URL directly. The service worker
+  now excludes all audio paths and never cache-puts a 206 response.
+- Recording guide: `docs/listening-recording-guide.md` — the 32 real
+  human-voice recordings Samir (or a volunteer) must make, file specs
+  (MP3, mono, ~64 kbps), and the two handover routes (admin upload or
+  commit). Never synthesised or placeholder audio.
+- Tests: backend 196 pytest (16 new audio tests incl. Range/upload/
+  content-rule), frontend vitest 10 tests (player wiring + audioCache)
+  with tsc + build green. New dep: `python-multipart` (upload).
+
 # Phase 5 — second content batch (v0.5.0), 17 Nov 2026
 - Second weekly content batch (all original): Listening L5–L8 (4 tests,
   160 questions, transcripts shown, audio still pending real recordings),

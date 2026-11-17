@@ -29,14 +29,22 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   // API calls always go to the network — never cache auth or progress.
   if (url.pathname.startsWith("/api/")) return;
+  // Listening audio is cached separately by audioCache.ts (Cache
+  // Storage, `prepsathi-audio-v1`). Never let the shell cache touch
+  // it: a Range (206) response must never be stored as the whole file,
+  // and audio must not be double-cached.
+  if (url.pathname.startsWith("/static/audio/") || url.pathname.endsWith(".mp3")) return;
   if (event.request.method !== "GET") return;
   event.respondWith(
     caches.match(event.request).then(
       (cached) =>
         cached ||
         fetch(event.request).then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          // Only cache complete 200 responses — never a 206 partial.
+          if (response.status === 200) {
+            const copy = response.clone();
+            caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          }
           return response;
         }),
     ),

@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import config
 from .database import init_db
-from .routers import attempts, auth, dashboard, feedback_loop, mock, modules, practice, resources, vocabulary
+from .routers import attempts, audio, auth, dashboard, feedback_loop, mock, modules, practice, resources, vocabulary
 
 
 @asynccontextmanager
@@ -51,6 +51,7 @@ app.include_router(vocabulary.router, prefix="/api")
 app.include_router(practice.router, prefix="/api")
 app.include_router(mock.router, prefix="/api")
 app.include_router(feedback_loop.router, prefix="/api")
+app.include_router(audio.router)
 
 
 @app.get("/api/health")

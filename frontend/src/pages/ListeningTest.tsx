@@ -8,6 +8,7 @@ import {
   type TestSession,
 } from "../api";
 import { useAuth } from "../auth";
+import ListeningPlayer from "./ListeningPlayer";
 import {
   formatTime,
   QuestionInput,
@@ -127,9 +128,11 @@ export default function ListeningTestPage() {
           </h2>
           <p className="meta">{part.setting}</p>
           {part.audio_url ? (
-            <audio controls src={part.audio_url}>
-              Your browser does not support audio playback.
-            </audio>
+            <ListeningPlayer
+              part={part.part}
+              audioUrl={part.audio_url}
+              audioNote={part.audio_note}
+            />
           ) : (
             <p className="notice">{part.audio_note}</p>
           )}

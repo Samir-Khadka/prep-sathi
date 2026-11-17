@@ -219,6 +219,27 @@ label {
   margin-top: 16px;
 }
 
+/* Listening player (Phase 5.2): controls in a row, time readout,
+   "Now playing" state. The seek slider stretches to fill the row. */
+.listening-player {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.listening-player input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+}
+
+.listening-player .now-playing {
+  width: 100%;
+  margin: 0;
+  font-weight: 600;
+}
+
 .honesty {
   font-size: 0.85rem;
   color: var(--muted);

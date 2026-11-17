@@ -62,6 +62,11 @@ class _LazyContent:
 
     _store: ContentStore | None = None
 
+    def reload(self) -> None:
+        """Drop the cached store so the next access re-reads the
+        content files from disk (used after an admin audio upload)."""
+        self._store = None
+
     def __getattr__(self, name: str):
         if self._store is None:
             try:

@@ -1,7 +1,7 @@
 /* PrepSathi API client. The token lives in localStorage; nothing
    sensitive is ever written into the code itself. */
 
-const API_URL =
+export const API_URL =
   import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 export interface User {
