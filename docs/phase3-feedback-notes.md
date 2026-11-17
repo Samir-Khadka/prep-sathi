@@ -98,7 +98,7 @@ low/high = average of criterion lows/highs, rounded to 0.5.
 
 ## Calibration (2026-11-16, from the product's own content)
 
-Thresholds were set from the 20 model answers in
+Thresholds were set from the 30 model answers in
 `backend/app/content/writing_prompts.json` and one weak fixture
 (original text, in `backend/tests/test_feedback.py` as `WEAK_TEXT`:
 115 words, one paragraph, repetitive vocabulary, near-identical
@@ -106,7 +106,7 @@ sentence lengths, "very" ×5, six "I think" openers).
 
 | Text | Overall band range |
 |---|---|
-| All 20 model answers (Task 1 academic + general, Task 2 academic + general) | low end 7.0–7.5, high end 7.5–8.0 (weakest: WG-T1-01, WG-T1-03, WG-T1-05 at 7.0–7.5 — letters score lower on coherence, which is expected: few linking words, plain vocabulary) |
+| All 30 model answers (Task 1 academic + general, Task 2 academic + general) | low end 7.0–7.5, high end 7.5–8.0 (weakest: WA-T1-06, WA-T1-07, WA-T1-08 at 7.0–8.0 — Task 1 descriptions score lower on coherence, which is expected: single-paragraph storage, few linking words, plain vocabulary) |
 | Weak fixture (WA-T2-01 prompt) | 4.0–5.0 (TA 4.5–5.5, CC 4.0–5.0, LEX 4.0–5.0, GRAM 4.5–5.5) |
 
 Pinned in tests: `test_model_answers_score_high` (every model answer

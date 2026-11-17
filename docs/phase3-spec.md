@@ -76,7 +76,7 @@ an overall range (average of the four criteria, rounded to .5):
   sentence-length variety, subordinating-conjunction signals. See
   `docs/phase3-feedback-notes.md` for the full signal list, thresholds
   and calibration.
-- Calibration: all 20 model answers score 7.0–8.0; a weak fixture
+- Calibration: all 30 model answers score 7.0–8.0; a weak fixture
   (115 words, single paragraph, repetitive) scores 4.0–5.0.
 - Limits (stated in every response): automated feedback counts
   measurable patterns only and **cannot judge ideas, argument quality,

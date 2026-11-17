@@ -77,7 +77,7 @@ export default function Vocabulary() {
         <h1>Vocabulary</h1>
         <p>
           Words harvested from your own reading and listening mistakes —
-          reviewed with spaced repetition. Load the 200-word starter deck
+          reviewed with spaced repetition. Load the 350-word starter deck
           to begin, or add your own words below.
         </p>
         <p>

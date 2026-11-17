@@ -99,7 +99,7 @@ def test_listening_list(user_token: dict) -> None:
     resp = client.get("/api/practice/listening", headers=user_headers(user_token))
     assert resp.status_code == 200, resp.text
     data = resp.json()
-    assert len(data) == 4
+    assert len(data) == 8
     assert data[0]["total_questions"] == 40
     assert data[0]["time_limit_seconds"] == 1920
     assert all(part["has_audio"] is False for test in data for part in test["parts"])
@@ -244,10 +244,10 @@ def test_reading_lists_by_track(user_token: dict) -> None:
     headers = user_headers(user_token)
     academic = client.get("/api/practice/reading?track=academic", headers=headers)
     assert academic.status_code == 200, academic.text
-    assert len(academic.json()) == 4
+    assert len(academic.json()) == 6
     general = client.get("/api/practice/reading?track=general", headers=headers)
     assert general.status_code == 200, general.text
-    assert len(general.json()) == 1
+    assert len(general.json()) == 2
     assert general.json()[0]["time_limit_seconds"] == 3600
     bad = client.get("/api/practice/reading?track=nope", headers=headers)
     assert bad.status_code == 400
@@ -287,7 +287,7 @@ def test_writing_list_hides_model_answer(user_token: dict) -> None:
     headers = user_headers(user_token)
     resp = client.get("/api/practice/writing?track=academic", headers=headers)
     assert resp.status_code == 200, resp.text
-    assert len(resp.json()) == 10
+    assert len(resp.json()) == 16
     assert all("model_answer" not in p for p in resp.json())
     detail = client.get("/api/practice/writing/WA-T1-01", headers=headers)
     assert detail.status_code == 200, detail.text
@@ -324,7 +324,7 @@ def test_speaking_list_and_complete(user_token: dict) -> None:
     headers = user_headers(user_token)
     resp = client.get("/api/practice/speaking", headers=headers)
     assert resp.status_code == 200, resp.text
-    assert len(resp.json()) == 15
+    assert len(resp.json()) == 20
     assert resp.json()[0]["part2"]["prep_seconds"] == 60
     done = client.post(
         "/api/practice/speaking/complete",
@@ -341,9 +341,9 @@ def test_vocabulary_seed_is_idempotent(user_token: dict) -> None:
     headers = user_headers(user_token)
     first = client.post("/api/vocabulary/seed", headers=headers)
     assert first.status_code == 201, first.text
-    assert first.json() == {"added": 250, "skipped": 0}
+    assert first.json() == {"added": 350, "skipped": 0}
     second = client.post("/api/vocabulary/seed", headers=headers)
-    assert second.json() == {"added": 0, "skipped": 250}
+    assert second.json() == {"added": 0, "skipped": 350}
 
 
 def test_vocabulary_review_intervals(user_token: dict) -> None:

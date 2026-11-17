@@ -209,14 +209,26 @@ def test_start_rotation_uses_fresh_material(user_token: dict) -> None:
     second = _start_mock(headers, "academic")
     third = _start_mock(headers, "academic")
     fourth = _start_mock(headers, "academic")
+    fifth = _start_mock(headers, "academic")
+    sixth = _start_mock(headers, "academic")
+    seventh = _start_mock(headers, "academic")
+    eighth = _start_mock(headers, "academic")
     assert (first["listening_test_id"], first["reading_test_id"]) == ("L1", "RA1")
     assert (second["listening_test_id"], second["reading_test_id"]) == ("L2", "RA2")
     assert (third["listening_test_id"], third["reading_test_id"]) == ("L3", "RA3")
     assert (fourth["listening_test_id"], fourth["reading_test_id"]) == ("L4", "RA4")
+    assert (fifth["listening_test_id"], fifth["reading_test_id"]) == ("L5", "RA5")
+    assert (sixth["listening_test_id"], sixth["reading_test_id"]) == ("L6", "RA6")
+    assert (seventh["listening_test_id"], seventh["reading_test_id"]) == ("L7", "RA1")
+    assert (eighth["listening_test_id"], eighth["reading_test_id"]) == ("L8", "RA2")
     assert first["writing_task1_prompt_id"] == "WA-T1-01"
     assert second["writing_task1_prompt_id"] == "WA-T1-02"
     assert third["writing_task1_prompt_id"] == "WA-T1-03"
     assert fourth["writing_task1_prompt_id"] == "WA-T1-04"
+    assert fifth["writing_task1_prompt_id"] == "WA-T1-05"
+    assert sixth["writing_task1_prompt_id"] == "WA-T1-06"
+    assert seventh["writing_task1_prompt_id"] == "WA-T1-07"
+    assert eighth["writing_task1_prompt_id"] == "WA-T1-08"
     assert first["writing_task2_prompt_id"] == "WA-T2-01"
     assert second["writing_task2_prompt_id"] == "WA-T2-02"
     assert third["writing_task2_prompt_id"] == "WA-T2-03"
@@ -229,10 +241,18 @@ def test_start_rotation_general(user_token: dict) -> None:
     second = _start_mock(headers, "general")
     third = _start_mock(headers, "general")
     fourth = _start_mock(headers, "general")
+    fifth = _start_mock(headers, "general")
+    sixth = _start_mock(headers, "general")
+    seventh = _start_mock(headers, "general")
+    eighth = _start_mock(headers, "general")
     assert (first["listening_test_id"], first["reading_test_id"]) == ("L1", "RG1")
     assert (second["listening_test_id"], second["reading_test_id"]) == ("L2", "RG1")
     assert (third["listening_test_id"], third["reading_test_id"]) == ("L3", "RG1")
     assert (fourth["listening_test_id"], fourth["reading_test_id"]) == ("L4", "RG1")
+    assert (fifth["listening_test_id"], fifth["reading_test_id"]) == ("L5", "RG2")
+    assert (sixth["listening_test_id"], sixth["reading_test_id"]) == ("L6", "RG1")
+    assert (seventh["listening_test_id"], seventh["reading_test_id"]) == ("L7", "RG2")
+    assert (eighth["listening_test_id"], eighth["reading_test_id"]) == ("L8", "RG1")
     assert first["writing_task1_prompt_id"] == "WG-T1-01"
     assert second["writing_task1_prompt_id"] == "WG-T1-02"
     assert first["writing_task2_prompt_id"] == "WG-T2-01"

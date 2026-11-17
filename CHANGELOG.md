@@ -1,3 +1,16 @@
+# Phase 5 — second content batch (v0.5.0), 17 Nov 2026
+- Second weekly content batch (all original): Listening L5–L8 (4 tests,
+  160 questions, transcripts shown, audio still pending real recordings),
+  Academic Reading RA5–RA6 and General Training Reading RG2 (3 tests,
+  120 questions with evidence-linked explanations), 10 Writing prompts
+  (WA-T1-06/07/08, WA-T2-06/07/08, WG-T1-06/07, WG-T2-06/07) with model
+  answers + band-7 commentary — all 30 model answers still score 7.0–8.0
+  under the Phase 3 feedback calibration, Speaking S16–S20, vocabulary
+  deck 250 → 350 words (11 per topic, 12 general). Mock rotation extended
+  to eight sittings per track (academic: L5+RA5, L6+RA6, L7+RA1, L8+RA2;
+  general: L5+RG2, L6+RG1, L7+RG2, L8+RG1).
+- Deferred: partner Speaking practice and the store wrapper (DECISIONS.md items 25–26).
+
 # Phase 4 — launch readiness (v0.4.0), 16 Nov 2026
 - Landing page: value proposition, how-it-works steps, free/no-paywall card, honest band labelling, and a privacy note page (recordings stay on-device, account/recording deletion). SEO basics: meta description, Open Graph tags, robots.txt, sitemap (root only — hash URLs are not crawlable; domain is a placeholder until a real deploy URL exists).
 - In-app feedback loop: POST /api/feedback (authenticated) plus an admin list/resolve view gated by ADMIN_EMAILS (read from the environment at request time); feedback form page at /#/feedback.

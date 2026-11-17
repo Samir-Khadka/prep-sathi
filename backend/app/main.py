@@ -30,7 +30,7 @@ app = FastAPI(
         "All practice content is original; band scores shown anywhere "
         "are practice estimates, not official scores."
     ),
-    version="0.4.0",
+    version="0.5.0",
     lifespan=lifespan,
 )
 
@@ -55,4 +55,4 @@ app.include_router(feedback_loop.router, prefix="/api")
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "app": "prepsathi", "version": "0.4.0"}
+    return {"status": "ok", "app": "prepsathi", "version": "0.5.0"}

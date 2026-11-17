@@ -36,7 +36,7 @@ def _find_keys(obj: object, wanted: set[str]) -> list[str]:
 
 def test_listening_counts() -> None:
     store = ContentStore()
-    assert len(store.listening_tests) == 4
+    assert len(store.listening_tests) == 8
     for test in store.listening_tests:
         questions = [q for part in test["parts"] for q in part["questions"]]
         assert len(questions) == 40
@@ -47,10 +47,10 @@ def test_listening_counts() -> None:
 
 def test_reading_counts() -> None:
     store = ContentStore()
-    assert len(store.reading_tests) == 5
+    assert len(store.reading_tests) == 8
     tracks = [t["track"] for t in store.reading_tests]
-    assert tracks.count("academic") == 4
-    assert tracks.count("general") == 1
+    assert tracks.count("academic") == 6
+    assert tracks.count("general") == 2
     for test in store.reading_tests:
         questions = [q for p in test["passages"] for q in p["questions"]]
         assert len(questions) == 40
@@ -59,29 +59,35 @@ def test_reading_counts() -> None:
 
 def test_writing_counts() -> None:
     store = ContentStore()
-    assert len(store.writing_prompts) == 20
+    assert len(store.writing_prompts) == 30
     combos = {(p["track"], p["task"]) for p in store.writing_prompts}
     assert combos == {
         ("academic", 1), ("academic", 2), ("general", 1), ("general", 2),
+    }
+    expected = {
+        ("academic", 1): 8,
+        ("academic", 2): 8,
+        ("general", 1): 7,
+        ("general", 2): 7,
     }
     for track, task in combos:
         count = sum(
             1 for p in store.writing_prompts
             if p["track"] == track and p["task"] == task
         )
-        assert count == 5, (track, task, count)
+        assert count == expected[(track, task)], (track, task, count)
 
 
 def test_speaking_counts() -> None:
     store = ContentStore()
-    assert len(store.speaking_sets) == 15
+    assert len(store.speaking_sets) == 20
 
 
 def test_vocabulary_counts() -> None:
     store = ContentStore()
-    assert len(store.vocabulary_deck) == 250
+    assert len(store.vocabulary_deck) == 350
     words = [w["word"].strip().lower() for w in store.vocabulary_deck]
-    assert len(set(words)) == 250
+    assert len(set(words)) == 350
 
 
 def test_public_listening_hides_answers() -> None:

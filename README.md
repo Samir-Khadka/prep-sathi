@@ -3,18 +3,19 @@
 Free IELTS-format practice for Nepali phone-first learners — original
 practice material, honest band estimates.
 
-**Status: Phase 4 (v0.4.0).** Full mock sittings in test order with
+**Status: Phase 5 (v0.5.0).** Full mock sittings in test order with
 section locking and an overall band estimate, Writing feedback by the
 four official criteria (estimated ranges, guidance only), Speaking
 playback history kept on-device with fluency signals, and the resources
 hub verified live. Listening and Reading timed tests with automatic
 scoring and band estimates, Writing guided practice with model answers,
 Speaking sets with on-device recording, vocabulary flashcards with
-spaced-repetition review and a 250-word vocabulary deck, and a progress
-dashboard with section trends and target-band tracking. Phase 4 adds the
-launch landing page with SEO, an in-app feedback loop, a privacy note,
-and a first weekly content batch (Listening L4, Reading RA4);
-deployment waits for Render free hours to reset on 1 Dec.
+spaced-repetition review and a 350-word vocabulary deck, and a progress
+dashboard with section trends and target-band tracking. Phase 5 adds a
+second weekly content batch (Listening L5–L8, Academic Reading RA5–RA6,
+General Training Reading RG2, 10 Writing prompts, Speaking S16–S20,
+vocabulary deck 250 → 350 words) and extends mock rotation to eight
+sittings; deployment waits for Render free hours to reset on 1 Dec.
 Nothing here is copied from Cambridge books or any published test —
 all practice material is original and written to the official IELTS
 format. Listening audio is pending real recordings (no TTS was

@@ -25,7 +25,7 @@ MODULES: dict[str, dict] = {
             "matching, map and diagram labelling, and form, note, table "
             "and sentence completion."
         ),
-        "status": "Practice available — 2 timed tests with automatic "
+        "status": "Practice available — 8 timed tests with automatic "
         "scoring and band estimates. Audio is pending real recordings; "
         "transcripts are shown instead.",
     },

@@ -38,7 +38,7 @@ errors — those need a real grammar checker or a human reader.
 Calibration
 -----------
 Thresholds were set from the product's own reference texts, not from
-vibes: the 20 model answers in ``content/writing_prompts.json`` score
+vibes: the 30 model answers in ``content/writing_prompts.json`` score
 an overall low end of 7.0 or above, and a weak fixture (about 120
 words, one paragraph, repetitive vocabulary) scores an overall high
 end of 5.5 or below. See ``docs/phase3-feedback-notes.md`` for the

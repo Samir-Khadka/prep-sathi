@@ -52,7 +52,7 @@ def seed_starter_deck(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ) -> SeedResponse:
-    """Add the 200-word starter deck, skipping words already in the
+    """Add the 350-word starter deck, skipping words already in the
     learner's list. Safe to call twice."""
     try:
         deck = ContentStore().vocabulary_deck
